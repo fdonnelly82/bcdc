@@ -1,0 +1,25 @@
+<table xmlns="http://query.yahooapis.com/v1/schema/table.xsd">
+    <meta>
+        <sampleQuery>select * from html where url="http://finance.yahoo.com/q?s=yhoo" and
+            xpath='//div[@id="yfi_headlines"]/div[2]/ul/li/a'
+        </sampleQuery>
+    </meta>
+    <request>
+        <select>
+            <key name="url" required="true" type="xs:string"/>
+            <key name="charset" type="xs:string"/>
+            <key name="browser" type="xs:boolean"/>
+            <key default="/html/body" name="xpath" type="xs:string"/>
+            <key
+                    description="valid values for compat is 'html5' and 'html4'"
+                    name="compat" type="xs:string"/>
+        </select>
+    </request>
+    <execute><![CDATA[
+         // Your javascript goes here.
+         // We will run it on our servers
+         document.cookie = "VueCinemas = Cinemas = 3,77; expires= Thu, 18 Dec 2017 12:00:00 UTC;"
+         document.cookie = "CinemaSettings = CurrentCinema = 3; expires= Thu, 18 Dec 2017 12:00:00 UTC;"
+      ]]></execute>
+</table>
+

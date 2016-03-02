@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="js/yql.js"></script>
+    <script src="js/cinema.js"></script>
+     <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> -->
+    <!--  <script src="https://raw.githubusercontent.com/padolsey-archive/jquery.fn/master/cross-domain-ajax/jquery.xdomainajax.js"></script> -->
+  </head>
+  <body>
+      <input type="text"/>
+  <div id="content"></div>
+  <div id="result"></div>
+
+  </body>
+  </html>
+
+  <script>
+      var movie_hyperlink = $("#frame").find($('[id^=dnn_ctr1418_ViewCinemaListing_MKII_rptSynopsis_hlInfo_]'));
+
+
+      $(movie_hyperlink).each(function(index)
+      {
+          $("#result").append("<p>" + $(this).text() + "</p>");
+      });
+
+
+
+
+      document.cookie = "VueCinemas=Cinemas=3,77; expires=Thu, 15 Dec 2017 12:00:00 UTC;"
+      document.cookie = "CinemaSettings = CurrentCinema = 3; expires= Thu, 15 Dec 2012 12:00:00 UTC;"
+
+
+      var q = 'use "https://raw.githubusercontent.com/kbracha/datatable_test/master/test_table.xml" as test_table;';
+      //q += 'select * from test_table where url="https://www.myvue.com/latest-movies/cinema/aberdeen"';
+      q += 'select * from test_table where url="https://booking.myvue.com/OnlineBooking.aspx?cinemaid=10002&sessionId=148393"';
+      //var q = 'select * from html where url="https://www.google.com" and xpath="*"';
+      //yqlUrlQuery("https://booking.myvue.com/OnlineBooking.aspx?cinemaid=10002&sessionId=148393", cbfunc);
+
+
+      var vueMovies = function(movie)
+      {
+          for( var i=0; i < movie.length; i++ ) {
+              $("#result").append("<p>" + "<img src='" + movie[i].thumbnail + "'>" +
+                                  "<a target='blank' href='" + movie[i].url + "'>" + movie[i].name + "</a></img></p>");
+
+              for(var j=0; j < movie[i].session.length; j++)
+              {
+                  $("#result").append("<p>" + movie[i].session[j].date + "</p>");
+                  $("#result").append("<ul></ul>");
+
+                  for(var k = 0; k < movie[i].session[j].projection.length; k++)
+                  {
+                      $("#result").children().last().append("<li><a target='blank'' href='" + movie[i].session[j].projection[k].url + "'>" +
+                                           movie[i].session[j].projection[k].time + "</a> type: " +
+                                           movie[i].session[j].projection[k].type + "&nbsp;&nbsp;" +
+                                           "<button id='" + i + j + k + "' url='" + movie[i].session[j].projection[k].url + "'>Get pricing</button></li>");
+
+                      $("#" + i + j + k).click(function(){
+                          var btnThis = $(this);
+                          vueGetProjectionPricing($(this).attr("url"),
+                                  function (projectionPricing){
+                                      btnThis.after("<span>  teen->[ standard:" + projectionPricing.teen.standard + " vip: " + projectionPricing.teen.vip + "]  </span>");
+                                      btnThis.after("<span>  student->[ standard:" + projectionPricing.student.standard + " vip: " + projectionPricing.student.vip + "],  </span>");
+                                      btnThis.after("<span>  senior->[ standard:" + projectionPricing.senior.standard + " vip: " + projectionPricing.senior.vip + "],  </span>");
+                                      btnThis.after("<span>  adult->[ standard:" + projectionPricing.adult.standard + " vip: " + projectionPricing.adult.vip + "],  </span>");
+                                  }
+                          );
+                      });
+                  }
+
+
+              }
+          }
+
+          vueGetProjectionPricing(movie["Deadpool"].session["Thursday 18th February"].projection[1].url,
+            function (projectionPricing){
+                console.log(projectionPricing.senior.vip);
+            }
+          );
+      }
+
+      vueFetchMovies(vueMovies);
+
+  </script>
+ <!-- <script src='http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20rss%20where%20url%3D%22http%3A%2F%2Frss.news.yahoo.com%2Frss%2Ftopstories%22&format=json&callback=cbfunc'> -->
+<!--    <script src='http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22https%3A%2F%2Fwww.myvue.com%2Fcinemas%2Ffacilities%2Fcinema%2Faberdeen%22&format=xml&callback=cbfunc'> <!---->
+ </script>

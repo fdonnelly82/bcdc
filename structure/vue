@@ -1,0 +1,196 @@
+function: vueFetchMovies
+url: https://www.myvue.com/latest-movies/view/all-times
+
+
+<div class="filmList_list">
+    ...
+    <div id="dnn_ctr1418_ViewCinemaListing_MKII_rptSynopsis_divFilm_0" class="filmListFilm">
+    ...
+        <a id="dnn_ctr1418_ViewCinemaListing_MKII_rptSynopsis_hlInfo_0" href="/latest-movies/info/cinema/aberdeen/film/deadpool">Deadpool</a>
+        ...
+        <img id="dnn_ctr1418_ViewCinemaListing_MKII_rptSynopsis_imgFilmImage_0" src="/images/films/77749___Selected.jpg" alt="Deadpool" style="height:130px;width:88px;" height="130" width="88">
+        ...
+        <div class="sysnopsisFullDate">
+            <strong>Thursday 18th February</strong>
+        </div>
+        <a id="dnn_ctr1418_ViewCinemaListing_MKII_rptSynopsis_rptDays_0_rptDayTimes_0_hlTime_0" data-attribute="2D" class=""
+            href="https://booking.myvue.com/OnlineBooking.aspx?cinemaid=10002&amp;sessionId=148413"><span>18:15</span></a>
+        <a id="dnn_ctr1418_ViewCinemaListing_MKII_rptSynopsis_rptDays_0_rptDayTimes_0_hlTime_1" data-attribute="2D" class=""
+        href="https://booking.myvue.com/OnlineBooking.aspx?cinemaid=10002&amp;sessionId=148408"><span>19:30</span></a>
+        ...
+    </div>
+    <div id="dnn_ctr1418_ViewCinemaListing_MKII_rptSynopsis_divFilm_1" class="filmListFilm">
+        <a id="dnn_ctr1418_ViewCinemaListing_MKII_rptSynopsis_hlInfo_1" href="/latest-movies/info/cinema/aberdeen/film/how-to-be-single">How To Be Single</a>
+        ...
+    </div>
+    ...
+</div>
+
+
+
+
+
+
+
+function: vueGetProjectionPricing
+url (example): https://booking.myvue.com/OnlineBooking.aspx?cinemaid=10002&sessionId=148595
+
+
+                    <h1>My tickets</h1>
+
+
+    <div class="voucher">
+        <h3 class="voucher-head">Redeem your voucher(s)</h3>
+             <p class="voucher-copy">Meerkat Movies, Super Tuesday, Vitality, Club Lloyds promotional codes* and CEA carer card numbers only. All other discounted tickets must be purchased in cinema. Please be aware that when using our smartphone app, iOS9 users will not be able to select number of tickets - please carry out your purchase on the Vue mobile site.</p>
+        <div id="MainContent_ucBooking_ucStep1_ucVouchers_pnlVoucherCodesDynamic">
+	<table class="voucher-list">
+
+
+
+</table>
+
+<div style="display: block;" class="voucher-add-hidden">
+    <table class="voucher-list">
+        <tbody><tr class="voucher-item">
+            <td class="voucher-item-title">Voucher</td>
+            <td class="voucher-item-code">
+                <input id="voucherCode" name="voucherCode" class="voucher-item-code-input" type="text">
+                <!-- have added a second textbox (invisible) to prevent the enter key posting the form -->
+                <input style="visibility:hidden;display:none;" type="text">
+            </td>
+            <td class="voucher-item-check"></td>
+            <td class="voucher-item-copy"><a href="javascript:__doPostBack('ctl00$MainContent$ucBooking$ucStep1$ucVouchers','GetTicketsForVoucher')" class="v-btn-2 voucher-item-btn" data-showloading=""><span>Use voucher</span></a></td>
+            <td class="voucher-item-remove"></td>
+        </tr>
+    </tbody></table>
+</div>
+<div class="voucher-add">
+    <a href="#" class="voucher-add-btn"><span>Add another voucher</span></a>
+</div>
+
+</div>
+    </div>
+
+
+
+
+                    <!-- Panel contains the tickets available -->
+                    <div id="MainContent_ucBooking_ucStep1_ucTicketSelection_pnlEmbargo">
+
+</div>
+<div id="MainContent_ucBooking_ucStep1_ucTicketSelection_pnlBookingFees">
+
+
+</div>
+<div id="MainContent_ucBooking_ucStep1_ucTicketSelection_pnlTicketsErrorDynamic">
+
+</div>
+<div id="MainContent_ucBooking_ucStep1_ucTicketSelection_pnlTicketsDynamic">
+
+
+<table class="booking_table">
+    <tbody>
+        <tr>
+            <th class="booking_table_ticket first"><h3 class="m0">Your ticket(s)</h3></th>
+            <th class="booking_table_spacer"></th>
+
+                <th class="booking_seat_1">
+                    Standard Seating
+                </th>
+                <th class="booking_table_spacer"></th>
+                <th class="booking_seat_1">
+                    VIP Seating
+                </th>
+                <th class="booking_table_spacer"></th>
+
+            <th class="booking_table_sub last">Sub total</th>
+        </tr>
+
+            <tr class="">
+                <td class="booking_table_ticket first">Adult
+                        <a class="booking_table_info tooltip_trigger_click tooltip_right" href="#"><span>more info</span></a>
+                        <div class="tooltip_hidden">
+                            <div class="tooltip_info">
+                                This ticket applies to all guests 19 years and over.
+                            </div>
+                        </div>
+                </td>
+
+                <td class="booking_table_spacer"></td>
+
+                    <td class="booking_seat_1">
+                        <span class="booking_seat_info">
+                            <select name="ticketType:::1" id="ticketType:::1" class="booking_input_radio" data-unitprice="829" data-bookingfee="True">
+                                    <option value="0" selected="">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                            </select>
+                            at £8.29</span>
+                    </td>
+
+                    <td class="booking_table_spacer"></td>
+                    <td class="booking_seat_2">
+                        <span class="booking_seat_info">
+                            <select name="ticketType_vip:::0147" id="ticketType_vip:::0147" class="booking_input_radio" data-unitprice="979" data-bookingfee="True">
+                                    <option value="0" selected="">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                            </select>
+                            at £9.79</span>
+                    </td>
+
+                    <td class="booking_table_spacer"></td>
+
+                <td class="booking_table_sub last">£<span class="booking_table_row_subtotal">0.00</span></td>
+            </tr>
+
+            <tr class="">
+                <td class="booking_table_ticket first">Senior
+                        <a class="booking_table_info tooltip_trigger_click tooltip_right" href="#"><span>more info</span></a>
+                        <div class="tooltip_hidden">
+                            <div class="tooltip_info">
+                                This ticket is available to all guests aged 60 years and over.
+                            </div>
+                        </div>
+                </td>
+
+                <td class="booking_table_spacer"></td>
+
+                    <td class="booking_seat_1">
+                        <span class="booking_seat_info">
+                            ...
+                    </td>
+
+                    <td class="booking_table_spacer"></td>
+                    <td class="booking_seat_2">
+                        <span class="booking_seat_info">
+                            ...
+                        </span>
+                    </td>
+
+                    ...
+            </tr>
+
+            ...
+    </tbody>
+</table>
+...
+</div>
+
+
