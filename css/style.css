@@ -1,0 +1,12 @@
+body{
+    background-color: black !important;
+}
+
+section {
+    display: block;
+}
+
+h1 {
+    color: crimson;
+    margin-left: 20px;
+}
