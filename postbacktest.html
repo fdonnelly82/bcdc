@@ -1,0 +1,30 @@
+<!-- src: http://weblogs.asp.net/yousefjadallah/insure-that-dopostback-function-implemented-on-the-page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form name="form1" action="http://www.myvue.com/latest-movies/cinema/aberdeen" method="GET">
+    <input type="hidden" value="" id="__EVENTTARGET" name="__EVENTTARGET">
+    <input type="hidden" value="" id="__EVENTARGUMENT" name="__EVENTARGUMENT">
+</form>
+<input type="button" onclick="__doPostBack('dnn$ctr1418$ViewCinemaListing_MKII$lbFull','')"/>
+</body>
+<script type="text/javascript">
+    //<![CDATA[
+    var theForm = document.forms['form1'];
+    if (!theForm) {
+        theForm = document.form1;
+    }
+    function __doPostBack(eventTarget, eventArgument) {
+        if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+            theForm.__EVENTTARGET.value = eventTarget;
+            theForm.__EVENTARGUMENT.value = eventArgument;
+            theForm.submit();
+        }
+    }
+    //]]>
+</script>
+</html>
