@@ -79,7 +79,7 @@ var vueFetchMovies = function(callback)
 {
     callbackFunc = function(response)
     {
-        html = yqlResponseToHTML(response);
+        var html = yqlResponseToHTML(response);
 
         var movie_hyperlink = html.find('[id^=dnn_ctr1418_ViewCinemaListing_MKII_rptSynopsis_hlInfo_]');
         var movie_img = html.find('[id^=dnn_ctr1418_ViewCinemaListing_MKII_rptSynopsis_imgFilmImage_]');
@@ -133,7 +133,8 @@ var vueFetchMovies = function(callback)
         callback(movie);
     }
 
-    yqlUrlQuery("https://www.myvue.com/latest-movies/view/all-times","callbackFunc",true);
+    //yqlUrlQuery("https://www.myvue.com/latest-movies/view/all-times","callbackFunc",true);
+    yqlUrlQuery("http://www.myvue.com/latest-movies/cinema/aberdeen?__EVENTTARGET=dnn%24ctr1418%24ViewCinemaListing_MKII%24lbFull&__EVENTARGUMENT=","callbackFunc",true);
 }
 
 
@@ -143,7 +144,6 @@ var vueGetProjectionPricing = function(projection_url, callback)
 {
     projectionPricingCallback = function(response)
     {
-
         html = yqlResponseToHTML(response);
 
         var booking_div = html.find('.booking_seat_info');

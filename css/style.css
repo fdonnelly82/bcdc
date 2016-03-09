@@ -1,13 +1,140 @@
 body{
-    background-color: black !important;
+    background-color: black; !important;
 }
 
-section {
+.navbar-custom {
+    border-bottom: none;
+}
+
+#search-subpage-background {
+    positon: absolute;
+    height: 100vh;
+    width: 100%;
+    background-color: #cccccc;
+    /* background-color: black !important; */
+}
+
+#search-subpage-image {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    z-index: 9;
+    opacity: 0.85;
+    /* opacity: 0.5; */
+}
+
+#search-big-outer {
+    position: absolute;
     display: block;
-    margin-top: 50px;
+    width: 100%;
+    text-align: center;
 }
 
-h1 {
-    color: crimson;
-    margin-left: 20px;
+#search-big-inner {
+    position: relative;
+    padding-top: 33vh;
+    display: inline-block;
+    width: 35%;
+    z-index: 10;
+}
+
+#search-big-box {
+    font-size: 20px;
+    height: 60px;
+}
+
+#search-big-box:focus {
+    border-color: #cccccc;
+
+    /* glow
+    -webkit-box-shadow: 0px 0px 4px #9595A3;
+    -moz-box-shadow: 0px 0px 4px #9595A3;
+    box-shadow: 0px 0px 4px #9595A3;
+    */
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+
+#search-big-button {
+    width: 40px;
+    cursor: pointer;
+}
+
+
+#search-detailed-container {
+    padding-top: 50px;
+    position: absolute;
+    display: block;
+    width: 100%;
+    display: none;
+}
+
+
+#search-detailed-column-left {
+    position: relative;
+    width: 30%;
+    float: left;
+    z-index: 10;
+    height: 200px;
+    padding: 20px;
+    padding-top: 10vh;
+    /*border: 1px solid red;*/
+}
+
+
+#search-detailed-column-right {
+    position: relative;
+    margin-left: 30%;
+    z-index: 10;
+    top: -50px;
+    height: 100vh;
+    padding-top: 65px; /* 50px (top: -50) + 15px */
+}
+
+
+#search-detailed-actor-container {
+    padding-top: 40px;
+    padding-left: 10px;
+    color: white;
+    font-weight: bold;
+    font-family: Verdana;
+}
+
+.search-detailed-actor-node {
+    padding-top: 7px;
+    padding-left: 20%;
+    cursor: pointer;
+}
+
+.search-detailed-movie-node {
+    position: relative;
+    width: 20%;
+    height: 33%;
+    float: left;
+    padding: 15px;
+}
+
+.search-detailed-movie-img {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.tooltip {
+    color: #FFFFFF;
+    padding: 10px;
+    font-size: 15px;
+    opacity: 0;
+}
+
+.search-detailed-movie-title {
+    position: absolute;
+    bottom: 0;
+}
+
+#next-subpage {
+    height: 1200px;
+    border: 1px solid red;
 }
