@@ -1,7 +1,4 @@
 var getFeatured = function(callback) {
-
-    callbackFunc(responce)
-    {
         $(document).ready(function() {
             $('a.retrieve').click(function() {
                 $.ajax({
@@ -24,12 +21,12 @@ var getFeatured = function(callback) {
 
             // Check for errors from the server
             if (response.errors) {
-                $.each(response.errors, function() {
+                $.each(response.errors, function () {
                     html += '<2>' + this + '</2>';
                 });
             } else {
                 $('span.film.count').text(response.films.length);
-                $.each(response.films, function() {
+                $.each(response.films, function () {
                     html += '<h2>' + this.title + ' (' + this.classification + ')</h2>';
                 });
             }
@@ -37,6 +34,4 @@ var getFeatured = function(callback) {
             // Faster than doing a DOM call to append each node
             $('ol.film.list').append(html);
         }
-        callback(film);
-    }
 }
