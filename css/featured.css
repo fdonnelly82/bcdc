@@ -13,9 +13,15 @@
     height: 70vh;
     padding: 7px;
     border: 1px solid red;
+
 }
 
 .featured-img {
     width: 100%;
-    height: 100%;
+    height: 95%;
+}
+
+p{
+    color: white;
+    text-align: center;
 }
