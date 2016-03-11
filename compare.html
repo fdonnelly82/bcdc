@@ -25,20 +25,70 @@
     </div>
 </nav>
 <section>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">CompareCinemas</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Search</a></li>
+            <li class="active"><a href="#">Compare</a></li>
+            <li><a href="#">Featured</a></li>
+            <li><a href="#">Browse all</a></li>
+        </ul>
+    </div>
+</nav>
+<section>
+
+   <div id = "movieDetails">
+        <div id = "moviePhoto">
+            <h1> Photo Holder </h1>
+        </div>
+        <div id = "movieInfo">
+            <p> INFO GOES HERE </p>
+        </div>
+   </div> 
+   <div id = "bookingInfo">
+        <div id = "timedateInfo">
+            Date: <input id= "date" type="date"><br />
+            Time:<input type="time">
+        </div>
+        <div id = "ticketDetails">
+            Type:<select id = "type">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            Vip:<input type = "checkbox" id="vip">
+            Quantity:<input id = "quantity" type = "text">
+        </div>
+        <div id = "buttonHolder">
+            <input type = "button" value = "Add another ticket" id = "addTicket">
+            <input type = "button" value = "Compare" id = "compare">
+        </div>
+   </div>
+   <div id = "compareMovies">
+
+        <div id = "compare1">
+            <h1>£10.99</h1>
+            <div id = "photo1">
+            </div>
+        </div>
+        <div id = "compare2">
+            <h1>£10.99</h1>
+            <div id = "photo2">
+            </div>
+        </div>
+        <div id = "compare3">
+            \<h1>£10.99</h1>
+            <div id = "photo3">
+            </div>
+        </div>
+   </div>
 
 
-
-
-
-
-    <!-- Your code goes here -->
-
-
-
-
-
-
-
+</section>
 </section>
 </body>
 </html>
