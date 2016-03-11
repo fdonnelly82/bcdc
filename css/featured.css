@@ -2,7 +2,7 @@
     top: 75px;
     margin: 5px;
     position: absolute; /* keep */
-    border: 1px solid blue;
+    /*border: 1px solid blue;*/
 }
 
 .featured-node {
@@ -12,13 +12,13 @@
     width: 25%;
     height: 70vh;
     padding: 7px;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
 
 }
 
 .featured-img {
     width: 100%;
-    height: 95%;
+    height: 87%;
 }
 
 p{
