@@ -315,6 +315,8 @@ padding-top: 30px;
     width: 25%;
     margin-top: 5%;
     margin-left: 5%;
+    font-family: Verdana;
+    color: white;
 
 }
 
@@ -322,6 +324,9 @@ padding-top: 30px;
     float: left;
     width: 25%;
     margin-top: 5%;
+    font-family: Verdana;
+    color: white;
+
 
 }
 
@@ -329,5 +334,15 @@ padding-top: 30px;
     float: left;
     width: 25%;
     margin-top: 5%;
+    font-family: Verdana;
+    color: white;
 
 }
+
+#browse_all-background {
+    positon: absolute;
+    height: 200vh;
+    width: 100%;
+    background-color: black;
+}
+
