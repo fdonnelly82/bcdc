@@ -309,3 +309,25 @@ padding-top: 30px;
 
 }
 /* Compare Page */
+
+.all_movies_left{
+    float: left;
+    width: 25%;
+    margin-top: 5%;
+    margin-left: 5%;
+
+}
+
+.all_movies_center{
+    float: left;
+    width: 25%;
+    margin-top: 5%;
+
+}
+
+.all_movies_right{
+    float: left;
+    width: 25%;
+    margin-top: 5%;
+
+}
