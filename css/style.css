@@ -138,3 +138,196 @@ body{
     height: 1200px;
     border: 1px solid red;
 }
+/* Compare Page */
+#movieDetails{
+
+    background-color: black;
+    margin-top: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
+    width: auto;
+    height: 150px;
+}
+
+#moviePhoto{
+
+    background-color: blue;
+    width: 15%;
+    height: 100%;
+    float: left;
+
+    
+
+}
+#moviePhoto h1{
+
+text-align: center;
+padding-top: 30px;
+    
+    
+
+}
+#movieInfo{
+
+    background-color: green;
+    width: 85%;
+    height: 100%;
+    float: right;
+
+}
+
+#bookingInfo{
+    background-color: purple;
+    width: auto;
+    height: 63px;
+    margin-top: 50px;
+    margin-right: 50px;
+    margin-left: 50px;
+
+}
+
+#timedateInfo{
+
+    width: 35%;
+    background-color: yellow;
+    float: left;
+
+}
+
+#date{
+
+    margin-bottom: 10px;
+
+}
+
+#ticketDetails{
+    width: 65%;
+    background-color: red;
+    float: right;
+    height: 50%;
+    border-style: solid;
+    border-width: 1px;
+    text-align: center;
+}
+
+#type{
+
+    margin-right: 50px;
+
+}
+
+#vip{
+
+    margin-right: 50px;
+
+}
+#addTicket{
+
+    margin-left: 20%;
+    margin-right: 13.3%;
+
+}
+#compareMovies{
+    background-color: black;
+    margin-top: 30px;
+    width: auto;
+    margin-left: 50px;
+    margin-right: 50px;
+    height: 500px;
+}
+
+#compare1{
+    background-color: blue;
+    width: 200px;
+    height: 300px;
+    margin-left: 15%;
+    margin-top: 5%;
+    display:inline-block;
+
+
+}
+#compare1 h1{
+
+        text-align: center;
+}
+#photo1{
+
+    background-color: white;
+    width: 90px;
+    height: 90px;
+    margin-top: 20%;
+    margin-left: 29%;
+
+
+}
+#compare2{
+    background-color: blue;
+    width: 200px;
+    height: 300px;
+    margin-left: 18%;
+    margin-top: 5%;
+    display:inline-block;
+
+
+}
+#compare2 h1{
+
+        text-align: center;
+}
+#photo2{
+
+    background-color: white;
+    width: 90px;
+    height: 90px;
+    margin-top: 20%;
+    margin-left: 29%;
+
+
+}
+#compare3{
+    background-color: blue;
+    width: 200px;
+    height: 300px;
+    margin-left: 18%;
+    margin-top: 5%;
+    display:inline-block;
+
+
+}
+#compare3 h1{
+
+        text-align: center;
+}
+#photo3{
+
+    background-color: white;
+    width: 90px;
+    height: 90px;
+    margin-top: 20%;
+    margin-left: 29%;
+
+
+}
+/* Compare Page */
+
+.all_movies_left{
+    float: left;
+    width: 25%;
+    margin-top: 5%;
+    margin-left: 5%;
+
+}
+
+.all_movies_center{
+    float: left;
+    width: 25%;
+    margin-top: 5%;
+
+}
+
+.all_movies_right{
+    float: left;
+    width: 25%;
+    margin-top: 5%;
+
+}
