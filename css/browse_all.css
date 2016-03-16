@@ -1,0 +1,35 @@
+.all_movies_left{
+    float: left;
+    width: 25%;
+    margin-top: 5%;
+    margin-left: 5%;
+    font-family: Verdana;
+    color: white;
+
+}
+
+.all_movies_center{
+    float: left;
+    width: 25%;
+    margin-top: 5%;
+    font-family: Verdana;
+    color: white;
+
+
+}
+
+.all_movies_right{
+    float: left;
+    width: 25%;
+    margin-top: 5%;
+    font-family: Verdana;
+    color: white;
+
+}
+
+#browse_all-background {
+    positon: absolute;
+    height: 200vh;
+    width: 100%;
+    background-color: black;
+}
