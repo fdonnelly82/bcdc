@@ -9,15 +9,15 @@
     float: left; /* keep */
     position: relative; /* keep */
 
-    width: 25%;
-    height: 70vh;
+    width: 20%;
+    height: 60vh;
     padding: 7px;
     /*border: 1px solid red;*/
 
 }
 
 .featured-img {
-    width: 100%;
+    width: 90%;
     height: 87%;
 }
 
