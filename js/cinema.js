@@ -114,7 +114,7 @@ var vueFetchMovies = function(callback)
         }
 
         var movie = [];
-        for(i = 0; i < movie_hyperlink.length; i++)
+        for(var i = 0; i < movie_hyperlink.length; i++)
         {
             movie.push({
                 name: $(movie_hyperlink[i]).text(),
@@ -125,7 +125,7 @@ var vueFetchMovies = function(callback)
 
             movie[movie[i].name] = movie[i];
 
-            for(j = 0; j < movie[i].session.length; j++){
+            for(var j = 0; j < movie[i].session.length; j++){
                 movie[i].session[movie[i].session[j].date] = movie[i].session[j];
             }
         }
