@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Aberdeen Cinema Compare</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/search.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -26,16 +26,20 @@
         </ul>
     </div>
 </nav>
+
 <section id="search-big-outer">
     <div id="search-big-inner">
         <div class="input-group" id="search-big-container">
             <input type="text" class="form-control" placeholder="Search movie or actor ..." id="search-big-box">
-                        <span class="input-group-addon">
+                        <span class="input-group-addon"  id="search-big-button-span">
                             <i class="glyphicon glyphicon-search" id="search-big-button"></i>
                         </span>
         </div>
+
+        <div id="search-big-loading-info">Loading movies information.. <img src="ajax-loader(3).gif" /></div>
     </div>
 </section>
+
 
 <section id="search-detailed-container">
     <div id="search-detailed-column-left">
@@ -46,14 +50,16 @@
                         </span>
         </div>
         <div id="search-detailed-actor-container">
+            <!--
             <div class="search-detailed-actor-node">John Travolta</div>
             <div class="search-detailed-actor-node">Brad Pitt</div>
             <div class="search-detailed-actor-node">Hugh Jackman</div>
             <div class="search-detailed-actor-node">Joe Pesci</div>
             <div class="search-detailed-actor-node">Olivier Fiassam</div>
+            -->
         </div>
     </div>
-    <div id="search-detailed-column-right">
+    <div id="search-detailed-column-right"  class="modal">
     </div>
     <div class="clearfix"></div>
 </section>
@@ -69,6 +75,7 @@
 <script src="js/search.js"></script>
 <script>
     $(document).ready(function () {
+        $("#search-big-box").val("");
         vueFetchMovies(populateMovies);
     });
 </script>
