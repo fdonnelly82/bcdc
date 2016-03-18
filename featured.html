@@ -16,6 +16,38 @@
     <!--Idea is to load featured films form an external js file, still working on it-->
     <script src="js/featured.js"></script>
 
+    <script>
+        //when page loads, film name, certificate and poster loads with it
+        $(document).ready(function(){
+            //ajax to connect to ciniworld api to get film data
+            $.ajax({
+                url: 'http://www.cineworld.com/api/quickbook/films',
+                type: 'GET',
+                data: {key: 'your developer key', full: true, cinema: 1},
+                dataType: 'jsonp',
+                success: parseFilms
+            });
+        });
+
+        function parseFilms(response, status){
+            //variable to store html responses
+            var html = '';
+            //returns error message if cineworld server can't be reached
+            if (response.errors) {
+                $.each(response.errors, function () {
+                    html += '<h1>' + this + '</h1>';
+                });
+                //takes in film name, classification, poster url and places them in appropriate tags
+            } else {
+                $.each(response.films, function () {
+                    html += '<p>' + this.title + ' (' + this.classification + ')</p>';
+                    html += '<img>' + this.poster_url + '</img>';
+                });
+            }
+            //appends all DOM calls at once
+            $('ol.film.list').append(html);
+        }//end of function
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -33,23 +65,23 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Search</a></li>
                 <li><a href="#">Compare</a></li>
                 <li class="active"><a href="#">Featured<span class="sr-only">(current)</span></a></li>
                 <li><a href="#">Browse all</a></li>
             </ul>
-
         </div> <!-- End of navbar collapse -->
     </div> <!-- End of navbar container-fluid -->
 </nav>
+
 <section>
     <!--Film name, rating and poster to be inserted here,
     clicking on a poster should bring up prices for ciniworld,
     Vue and Belmont on different paragraphs -->
     <div class="featured-container">
         <div class="featured-node">
-            <p>Batman V Superman (12)</p>
+            <p></p>
             <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002945-lg.jpg" class="featured-img">
         </div>
         <div class="featured-node">
@@ -61,33 +93,14 @@
             <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002979-lg.jpg" class="featured-img">
         </div>
         <div class="featured-node">
-            <p>Eddie the Eagle (PG)</p>
-            <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003430-lg.jpg" class="featured-img">
-        </div>
-        <div class="featured-node">
             <p>Captain America:Civil War (12)</p>
             <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002968-lg.jpg" class="featured-img">
-        </div>
-        <div class="featured-node">
-            <p>Grimsby (15)</p>
-            <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002613-lg.jpg" class="featured-img">
-        </div>
-        <div class="featured-node">
-            <p>Allegiant (TBC)</p>
-            <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003401-lg.jpg" class="featured-img">
-        </div>
-        <div class="featured-node">
-            <p>London Has Fallen (15)</p>
-            <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002622-lg.jpg" class="featured-img">
         </div>
     </div>
 
 </section>
 
 
-<script>
-
-</script>
 </body>
 </html>
 
