@@ -39,7 +39,7 @@
             } else {
                 $.each(response.films, function () {
                     html += '<p>' + this.title + ' (' + this.classification + ')</p>';
-                    $("img").html += '<img>' + this.poster_url + '</img>';
+                    html += '<img>' + this.poster_url + '</img>';
                 });
             }
             //appends all DOM calls at once
