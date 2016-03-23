@@ -1,0 +1,253 @@
+
+body{
+    background-color: black; !important;
+    background-image: url(https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKDTt_3ruQEQARgBMghzhMPy4SEovw);
+    background-size: 100% 100%;
+    background-position: 0 52px;
+
+}
+
+
+#movieDetails{
+
+    background-color: black;
+    margin-top: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
+    width: auto;
+    height: 150px;
+}
+
+#videoHolder{
+
+    margin: auto;
+    width: 50%;
+    margin-top: 11%;
+    padding: 0.2%;
+    background: url(../images/background.jpg);
+    border-radius: 25px;
+    color: white;
+
+
+}
+
+#videoHolder iframe{
+
+    padding: 5%;
+    padding-bottom: 1%;
+    margin: auto;
+    border-radius: 25px;
+
+}
+
+#videoHolder h1{
+
+    padding: 5%;
+    padding-top: 0;
+    padding-bottom: 1%;
+}
+
+#videoHolder h1 img{
+
+width: 5%;
+height: 5%;
+margin-left: 2%;
+border-style: solid ;
+
+}
+
+#moviePhoto h1{
+
+text-align: center;
+padding-top: 30px;
+    
+    
+
+}
+#movieInfo{
+
+    padding: 5%;
+    padding-top: 1%;
+
+
+}
+
+
+#bookingInfo{
+    background-color: rgba(0,0,0,0);
+    width: 100%;
+    height: auto;
+    color: white;
+    margin: auto;
+    display: inline-block;
+    margin-top: 1%;
+    margin-bottom: 0;
+
+}
+
+#timedateInfo{
+
+    width: 45%;
+    background-color: rgba(0,0,0,0);
+    float: left;
+    
+                                                                                                                                                                                                                                       
+}
+
+#date{
+
+   float: left;
+   margin-right: 5%;
+   margin-left: 8%;
+}
+
+#ticketDetails{
+    width: 55%;
+    background-color: rgba(0,0,0,0);
+    height: 80%;
+    text-align: center;
+    float: right;
+}
+
+#type{
+
+    margin-right: 50px;
+    color: black;
+
+}
+
+#vip{
+
+    margin-right: 50px;
+
+
+}
+#quantity{
+
+    color: black;
+
+}
+#dPick{
+
+    color: black;
+
+}
+#time{
+
+    color: black;
+
+}
+#compareMovies{
+    margin: auto;
+    width: 50%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+    padding: 10px;
+    background: url(../images/background.jpg);
+    border-radius: 25px;
+}
+
+#compare1{
+    background-color: black;
+    width: 20%;
+    height: auto;
+    margin-left: 10%;
+    margin-top: 5%;
+    display:inline-block;
+    margin-bottom: 5%;
+    padding-bottom: 10%;
+    border-radius: 25px;
+    color: white;
+
+}
+#compare1 h1{
+
+        text-align: center;
+
+}
+#photo1{
+
+    background-color: white;
+    width: 50%;
+    height: 90px;
+    margin: auto;
+    margin-top: 20%;
+
+
+}
+#photo1 img{
+
+    width: 100%;
+    height: 100%;
+
+}
+#compare2{
+    background-color: black;
+    width: 20%;
+    height: auto;
+    margin-left: 10%;
+    margin-top: 5%;
+    display:inline-block;
+    margin-bottom: 5%;
+    padding-bottom: 10%;
+    border-radius: 25px;
+    color: white;
+
+
+}
+#compare2 h1{
+
+        text-align: center;
+}
+#photo2{
+
+    background-color: white;
+    width: 70%;
+    height: 90px;
+    margin: auto;
+    margin-top: 20%;
+
+}
+#photo2 img{
+
+    width: 100%;
+    height: 100%;
+
+}
+#compare3{
+    background-color: black;
+    width: 20%;
+    height: auto;
+    margin-left: 10%;
+    margin-top: 5%;
+    display:inline-block;
+    margin-bottom: 5%;
+    padding-bottom: 10%;
+    border-radius: 25px;
+    color: white;
+
+
+
+}
+#compare3 h1{
+
+    text-align: center;
+    
+}
+#photo3{
+
+    background-color: white;
+    width: 100%;
+    height: 90px;
+    margin: auto;
+    margin-top: 20%;
+
+
+}
+#photo3 img{
+
+    width: 100%;
+    height: 100%;
+
+}
+
