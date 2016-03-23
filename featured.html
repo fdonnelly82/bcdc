@@ -19,7 +19,7 @@
     <script>
         //when page loads, film name, certificate and poster loads with it
         $(document).ready(function(){
-            //ajax to connect to ciniworld api to get film data
+            //ajax to connect to cineworld api to get film data
             $.ajax({
                 url: 'http://www.cineworld.com/api/quickbook/films',
                 type: 'GET',
@@ -41,7 +41,9 @@
             } else {
                 $.each(response.films, function () {
                     html += '<p>' + this.title + ' (' + this.classification + ')</p>';
-                    html += '<img>' + this.poster_url + '</img>';
+                    $('img').attr("src", this.poster_url).load(function(){
+                        this.width;
+                    });
                 });
             }
             //appends all DOM calls at once
@@ -50,6 +52,7 @@
     </script>
 </head>
 <body>
+<h1>Featured</h1>
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -86,7 +89,7 @@
         </div>
         <div class="featured-node">
             <p>Deadpool (15)</p>
-            <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002984-lg.jpg" class="featured-img">
+            <img id="poster" src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002984-lg.jpg" class="featured-img">
         </div>
         <div class="featured-node">
             <p>Kung Fu Panda 3 (PG)</p>
