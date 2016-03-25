@@ -1,9 +1,9 @@
 .featured-container {
-    padding-top: 3%;
-    padding-left: 30px;
-    padding-right: inherit;
-    top: 75px;
-    margin: 5px;
+    padding-top: 1%;
+    top: 45px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
     position: absolute; /* keep */
     /*border: 1px solid blue;*/
 }
@@ -13,28 +13,24 @@
     float: left; /* keep */
     position: relative; /* keep */
 
-    width: 165px;
-    height: 55vh;
-    padding: 7px;
+    width: 25%;
+    /*height: 95vh;*/
+    padding: 0.5%;
     /*border: 1px solid red;*/
 
 }
 
+
 .featured-img {
     width: 100%;
     height: 87%;
-    padding-top: 10%;
+    padding-top: 5%;
 }
 
 p{
     color: white;
     text-align: center;
-    padding-bottom: 2%;
-    font-size: 10px;
+    padding-bottom: 0.1%;
+    font-size: 14px;
 }
 
-h1{
-    padding-top: 35px;
-    color: white;
-    text-align: center;
-}
