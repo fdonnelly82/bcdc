@@ -1,11 +1,10 @@
 .featured-container {
-    padding-top: 1%;
-    top: 45px;
+    margin-top: 50px;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    position: absolute; /* keep */
-    /*border: 1px solid blue;*/
+    height: 100vh;
+    padding-top: 75px /* navbar <50px> + <25px own> */;
 }
 
 

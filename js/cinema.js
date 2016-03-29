@@ -118,6 +118,7 @@ var vueFetchMovies = function(callback)
         {
             movie.push({
                 name: $(movie_hyperlink[i]).text(),
+                simpleName: $(movie_hyperlink[i]).text().toLowerCase().replace(","," "),
                 url: "https://www.myvue.com" + $(movie_hyperlink[i]).attr('href'),
                 thumbnail: "https://www.myvue.com" + $(movie_img[i]).attr("src"),
                 session : movie_session[i]

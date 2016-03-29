@@ -1,4 +1,3 @@
-var movies;
 var searchDetailedShown = false;
 
 $("#search-big-box").focus(function (event)
@@ -33,51 +32,157 @@ $("#search-big-box").keyup(function (event)
 var actorsRequested = 0;
 var actorsCompleted = 0;
 var actorsFinishedRequesting = false;
-var children = 0;
 var requestsSent = 0;
 var actors = [];
+var allMovies = [];
+var highlightedActorNode = null;
 
 
-var matchMovies = function (event)
+var resetMoviesResults = function()
 {
-    $("#search-detailed-column-right").children().each(function() {
+    if(highlightedActorNode != null)
+    {
+        highlightedActorNode.removeClass("search-detailed-actor-node-higlighted");
+        highlightedActorNode = null;
+    }
+
+    $("#search-detailed-movies").children().each(function() {
         $(this).hide();
     });
 
-    $("#search-detailed-column-right").addClass("modal");
+    $("#search-detailed-movies-info").html("");
+}
+
+var matchMoviesAndActors = function (event, onlyMovies)
+{
+    if(typeof onlyMovies !== "undefined")
+        onlyMovies = true;
+    else
+        onlyMovies = false;
+
+    $("#search-detailed-movies").addClass("modal");
+
+    resetMoviesResults();
 
     var query = $("#search-detailed-box").val().toLowerCase().trim();
 
     var i = 0;
-    children = $("#search-detailed-column-right").children().length;
-    $("#search-detailed-column-right").children().each(function() {
-        if ($(this).attr("movieName").contains(query))
+    $("#search-detailed-movies").children().each(function() {
+        if ($(this).data("movie") != undefined)
+        {
+            if ($(this).data("movie").simpleName.indexOf(query) != -1)
+            {
+                $(this).show();
+                i++;
+            }
+        }
+    });
+
+    if(query.length == 0)
+        $("#search-detailed-movies-info").html("Displaying all available movies (" + i + " results)");
+    else if (i == 1)
+        $("#search-detailed-movies-info").html("Found 1 movie matching '" + query + "'");
+    else
+        $("#search-detailed-movies-info").html("Found " + i  + " movies matching '" + query + "'");
+
+
+    $("#search-detailed-movies").removeClass("modal");
+
+
+    if(onlyMovies == true)
+        return;
+
+    $("#search-detailed-actors").children().each(function() {
+        $(this).hide();
+    });
+
+    $("#search-detailed-actors").children().each(function() {
+        if (typeof $(this).data("actor") !== "undefined" && $(this).data("actor").simpleName.indexOf(query) != -1)
         {
             $(this).show();
         }
-        i++;
     });
 
-
-    $("#search-detailed-column-right").removeClass("modal");
+    $('#search-detailed-actors').perfectScrollbar('update');
 }
 
-$("#search-detailed-box").keyup(matchMovies);
+
+var matchMoviesByActor = function(event)
+{
+    if(($(event.target)).is(highlightedActorNode))
+    {
+        matchMoviesAndActors(true);
+        return;
+    }
+
+    resetMoviesResults();
+
+    var target = $(event.target);
+    target.addClass("search-detailed-actor-node-higlighted");
+    highlightedActorNode = target;
+
+    var actorMovies = target.data("actor").movies;
+
+    var found = 0;
+    for (var i = 0; i < actorMovies.length; i++)
+    {
+        $("#search-detailed-movies").children().each(function() {
+            if ($(this).data("movie") != undefined)
+            {
+                if (actorMovies[i] == $(this).data("movie").name)
+                {
+                    $(this).show();
+                    found++;
+                }
+            }
+        });
+    }
+
+    var infoPrefix = "";
+    var infoSuffix = " with '" + target.data("actor").name + "'";
+
+    if(found == 0) // should never happen !
+        infoPrefix = "Found no movies";
+    else if (i == 1)
+        infoPrefix = "Found 1 movie";
+    else
+        infoPrefix = "Found " + found  + " movies";
+
+    $("#search-detailed-movies-info").html(infoPrefix + infoSuffix);
+}
+
+
+var setupActorsContainer = function(event) {
+    var actorsContainerOffsetTop = $("#search-detailed-actors").offset().top;
+    var availableHeight = $(window).height() - actorsContainerOffsetTop - 20 /* make margin on the bottom*/;
+
+    $("#search-detailed-actors").css("max-height",availableHeight + "px");
+
+    $('#search-detailed-actors').perfectScrollbar('update');
+}
+
 
 
 var populateActors = function() {
-    for (var key in actors)
-    {
-        if(actors[key].movies.length > 1)
-        {
-            console.log(key);
-            console.log(actors[key].movies);
-        }
-
+    var actorsSorted = [];
+    for(var key in actors) {
+        actorsSorted[actorsSorted.length] = key;
     }
+    actorsSorted.sort();
 
-    console.log(Object.keys(actors).length);
+    for (var i = 0; i < actorsSorted.length; i++)
+    {
+        var key = actorsSorted[i];
+
+        var div = document.createElement('div');
+        $(div).attr('class','search-detailed-actor-node');
+        $(div).html(key);
+        $(div).data("actor",actors[key]);
+        $(div).click(matchMoviesByActor);
+        $("#search-detailed-actors").append(div);
+    }
 }
+
 
 
 var populateMovies = function (movie)
@@ -90,13 +195,14 @@ var populateMovies = function (movie)
     var parsedMovie = [];
     for(var i = 0; i < movie.length; i++)
     {
-        if(movie[i].name.contains("Live:") || movie[i].name.contains("Marathon") || movie[i].name.contains("Double Bill"))
+        if(movie[i].name.indexOf("Live:") != -1 || movie[i].name.indexOf("Marathon") != -1  || movie[i].name.indexOf("Double Bill") != -1 )
         {
             continue;
         }
         else
         {
             parsedMovie.push(movie[i]);
+            allMovies.push(movie[i]);
         }
     }
 
@@ -106,77 +212,82 @@ var populateMovies = function (movie)
     {
         var div = document.createElement("div");
         $(div).attr("movieName",movie[i].name.toLowerCase());
+        $(div).data("movie",movie[i]);
         $(div).attr("class","search-detailed-movie-node");
         $(div).html("<img class='search-detailed-movie-img' src='" + movie[i].thumbnail + "' data-toggle='tooltip' " +
                     "data-placement='bottom' title='" + movie[i].name + "'/>");
-        $("#search-detailed-column-right").append(div);
+        $("#search-detailed-movies").append(div);
     }
 
     $('[data-toggle="tooltip"]').tooltip();
 
-    $("#search-big-loading-info").html("Loading completed.")
+    $("#search-big-loading-info").html("Loading completed.");
 
     setTimeout(function() {
         $("#search-subpage-image").fadeTo(2000,0.15);
         $("#search-big-outer").hide();
-        $("#search-detailed-container").fadeIn(2000);
+        $("#content").fadeIn(2000);
         $("#search-detailed-box").focus();
         $("#search-detailed-box").val($("#search-big-box").val());
-        matchMovies();
-    }, 1000);
+        matchMoviesAndActors();
+        setupActorsContainer();
 
+        //return;
+        /* ACTORS SEARCH */
+        for(var i = 0; i < movie.length; i++)
+        {
+            $.ajax({
+                dataType: "json",
+                url: "http://api.themoviedb.org/3/search/movie?api_key=14f5f69689f9b51381db937a7d22ce5f&query="
+                +    encodeURI(movie[i].name),
+                movieName: movie[i].name,
+                success: function(data){
+                    requestsSent++;
 
-
-    /* ACTORS SEARCH */
-    for(var i = 0; i < movie.length; i++)
-    {
-        $.ajax({
-            dataType: "json",
-            url: "http://api.themoviedb.org/3/search/movie?api_key=14f5f69689f9b51381db937a7d22ce5f&query="
-            +    encodeURI(movie[i].name),
-            movieName: movie[i].name,
-            success: function(data){
-                requestsSent++;
-
-                /* TODO: after movies from all cinemas are merged define some heuristics to pick
-                   TODO: the movie that is the most likely to be the movie being looked for.
-                   TODO: maybe try using movie descriptions and the similar_text function and estimate the accuracy of this approach*/
-                if(data.total_results == 1)
-                {
-                    actorsRequested++;
-                    $.ajax({
-                        dataType: "json",
-                        url: "http://api.themoviedb.org/3/movie/" + data.results[0].id+ "/credits?api_key=14f5f69689f9b51381db937a7d22ce5f",
-                        movieName: this.movieName,
-                        success: function(data){
-                            for (var i = 0; i < data.cast.length; i++)
-                            {
-                                if(!(data.cast[i].name in actors))
+                    /* TODO: after movies from all cinemas are merged define some heuristics to pick
+                     TODO: the movie that is the most likely to be the movie being looked for.
+                     TODO: maybe try using movie descriptions and the similar_text function and estimate the accuracy of this approach*/
+                    if(data.total_results == 1)
+                    {
+                        actorsRequested++;
+                        $.ajax({
+                            dataType: "json",
+                            url: "http://api.themoviedb.org/3/movie/" + data.results[0].id+ "/credits?api_key=14f5f69689f9b51381db937a7d22ce5f",
+                            movieName: this.movieName,
+                            success: function(data){
+                                for (var i = 0; i < data.cast.length; i++)
                                 {
-                                    actors[data.cast[i].name] = {
-                                        movies: []
-                                    };
+                                    if(!(data.cast[i].name in actors))
+                                    {
+                                        actors[data.cast[i].name] = {
+                                            movies: [],
+                                            name: data.cast[i].name,
+                                            simpleName: data.cast[i].name.toLowerCase(),
+                                        };
+                                    }
+
+                                    actors[data.cast[i].name].movies.push(this.movieName);
                                 }
 
-                                actors[data.cast[i].name].movies.push(this.movieName);
+                                actorsCompleted++;
+
+                                console.log("actorsCompleted" + actorsCompleted + ",actorsRequested: " + actorsRequested);
+
+                                if(actorsCompleted == actorsRequested)
+                                {
+                                    console.log("POPULATE");
+                                    populateActors();
+                                }
+
                             }
-
-                            actorsCompleted++;
-
-                            console.log("requestsSent: " + requestsSent + ",children: " + children + ",actorsCompleted"
-                                + actorsCompleted + ",actorsRequested: " + actorsRequested);
-
-                            if(requestsSent == children && actorsCompleted == actorsRequested)
-                            {
-                                populateActors();
-                            }
-
-                        }
-                    });
+                        });
+                    }
                 }
-            }
-        });
-    }
+            });
+        }
+    }, 1000);
+
+    //return;
 }
 
 

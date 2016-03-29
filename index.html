@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aberdeen Cinema Compare</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="css/search.css"/>
+    <link rel="stylesheet" type="text/css" href="css/featured.css"/>
+    <link rel="stylesheet" type="text/css" href="css/perfect-scrollbar.min.css"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <script src="js/perfect-scrollbar.min.js"></script>
+    <script src="js/perfect-scrollbar.jquery.min.js"></script>
+
+    <script src="js/yql.js"></script>
+    <script src="js/cinema.js"></script>
+    <script src="js/scroll.js"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top navbar-custom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">CompareCinemas</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li id="nav-search" class="active"><a href="#search">Search</a></li>
+            <li id="nav-compare" ><a href="#compare">Compare</a></li>
+            <li id="nav-featured" ><a href="#featured">Featured</a></li>
+            <li id="nav-browse-all" ><a href="#">Browse all</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section id="welcome">
+    <div id="search-big-outer">
+        <div id="search-big-inner">
+            <div class="input-group" id="search-big-container">
+                <input type="text" class="form-control" placeholder="Search movie or actor ..." id="search-big-box">
+                        <span class="input-group-addon"  id="search-big-button-span">
+                            <i class="glyphicon glyphicon-search" id="search-big-button"></i>
+                        </span>
+            </div>
+
+            <div id="search-big-loading-info">Loading movies information.. <img src="ajax-loader(3).gif" /></div>
+        </div>
+    </div>
+</section>
+
+
+
+<section id="content">
+
+
+    <!-- SEARCH -->
+
+    <section id="search">
+        <div id="search-detailed-column-left">
+            <div id="search-detailed-movies-info"></div>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search movie or actor ..." id="search-detailed-box">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </span>
+            </div>
+            <div id="search-detailed-actors">
+            </div>
+        </div>
+        <div id="search-detailed-column-right">
+            <div id="search-detailed-movies" class="modal"></div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+
+    </section>
+
+
+
+
+    <!-- FEATURED -->
+
+    <section id="featured">
+        <!--Film name, rating and poster to be inserted here,
+        clicking on a poster should bring up prices for ciniworld,
+        Vue and Belmont on different paragraphs -->
+        <div class="featured-container">
+            <div class="featured-node">
+                <p>Batman vs Superman</p>
+                <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002945-lg.jpg" class="featured-img">
+            </div>
+            <div class="featured-node">
+                <p>Deadpool</p>
+                <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002984-lg.jpg" class="featured-img">
+            </div>
+            <div class="featured-node">
+                <p>Kung Fu Panda 3</p>
+                <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002979-lg.jpg" class="featured-img">
+            </div>
+            <div class="featured-node">
+                <p>Captain America:Civil War</p>
+                <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002968-lg.jpg" class="featured-img">
+            </div>
+        </div>
+
+    </section>
+</section>
+
+<div id="search-subpage-background" class="search-subpage-background-extra" >
+    <img src="background2.jpg" id="search-subpage-image" class="search-subpage-image-extra"/>
+</div>
+
+<div class="clearfix"> </div>
+
+<script src="js/search.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#search-big-box").val("");
+        vueFetchMovies(populateMovies);
+
+        $('#search-detailed-actors').perfectScrollbar();
+
+        $("#search-detailed-box").keyup(matchMoviesAndActors);
+
+        $(window).scroll(onScroll);
+    });
+
+
+</script>
+</body>
+<footer>
+
+</footer>
+</html>
+
