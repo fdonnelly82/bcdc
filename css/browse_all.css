@@ -1,30 +1,23 @@
+
 .allmovies_container{
-    padding-left: 30px;
-    padding-right: inherit;
-    margin: 5px;
     position: absolute;
+    width: 100%;
+    padding: 2%;
+    margin: 2% auto auto;
+    background-color: black;
 }
 
 .allmovies_node{
     float: left;
     position: relative;
     width: 200px;
-    height: 55vh;
+    height: 11%;
     padding: 7px;
-    margin-top: 5%;
-}
-
-#browse_all-background {
-    positon: absolute;
-    height: 200vh;
-    width: 100%;
-    background-color: black;
 }
 
 .allmovies_poster{
     width: 100%;
     height: 87%;
-    padding-top: 10%;
 }
 
 p{
@@ -35,11 +28,10 @@ p{
 }
 
 .MovieTitle{
-    padding-top: 35px;
     color: white;
     text-align: center;
     font-size: 125%;
-    height: 85px;
+    height: 55px;
 }
 
 a, a:hover, a:active, a:visited { color: white; }
