@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <title>Aberdeen Cinema Compare</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="css/perfect-scrollbar.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/search.css"/>
     <link rel="stylesheet" type="text/css" href="css/featured.css"/>
-    <link rel="stylesheet" type="text/css" href="css/perfect-scrollbar.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/browse_all.css"/>
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -29,7 +31,7 @@
             <li id="nav-search" class="active"><a href="#search">Search</a></li>
             <li id="nav-compare" ><a href="#compare">Compare</a></li>
             <li id="nav-featured" ><a href="#featured">Featured</a></li>
-            <li id="nav-browse-all" ><a href="#">Browse all</a></li>
+            <li id="nav-browse-all" ><a href="#browse_all">Browse all</a></li>
         </ul>
     </div>
 </nav>
@@ -86,32 +88,245 @@
         clicking on a poster should bring up prices for ciniworld,
         Vue and Belmont on different paragraphs -->
         <div class="featured-container">
+            <div class="center-text featured-title"><span>Trending Now</span></div>
+
             <div class="featured-node">
-                <p>Batman vs Superman</p>
                 <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002945-lg.jpg" class="featured-img">
             </div>
             <div class="featured-node">
-                <p>Deadpool</p>
                 <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002984-lg.jpg" class="featured-img">
             </div>
             <div class="featured-node">
-                <p>Kung Fu Panda 3</p>
+
                 <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002979-lg.jpg" class="featured-img">
             </div>
             <div class="featured-node">
-                <p>Captain America:Civil War</p>
                 <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002968-lg.jpg" class="featured-img">
             </div>
         </div>
 
     </section>
+
+
+    <section id = "browse_all">
+        <!-- Container with nodes inside for each movie -->
+        <div class="allmovies_container">
+            <div class="center-text allmovies-title"><span>All Movies Listing</span></div>
+            <div class="allmovies_node">
+                <header>
+                    <h1 class="MovieTitle"><a href="#">Batman V Superman: Dawn of Justice</a></h1>
+                    <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002945.jpg" class="allmovies_poster"/>
+                </header>
+                <div class="allmovies_description">
+                    <span>Rating: 12A</span>
+                    <span>Release date: 25/03/2016</span>
+                    <span>Running time: 151 mins</span>
+                </div>
+            </div>
+            <div class="allmovies_node">
+                <header>
+                    <h1 class="MovieTitle"><a href="#">Kung Fu Panda 3</a></h1>
+                    <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002979.jpg" class="allmovies_poster"/>
+                </header>
+                <div class="allmovies_description">
+                    <span>Rating: PG</span>
+                    <span>Release date: 11/03/2016</span>
+                    <span>Running time: 95span mins</span>
+                </div>
+            </div>
+            <div class="allmovies_node">
+                <header>
+                    <h1 class="MovieTitle"><a href="#">My Big Fat Greek Wedding 2</a></h1>
+                    <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003096.jpg" class="allmovies_poster"/>
+                </header>
+                <div class="allmovies_description">
+                    <span>Rating: 12A</span>
+                    <span>Release date: 25/03/2016</span>
+                    <span>Running time: 94 mins</span>
+                </div>
+            </div>
+            <div class="allmovies_node">
+                <header>
+                    <h1 class="MovieTitle"><a href="#">10 Cloverfield Lane</a></h1>
+                    <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003360.jpg" class="allmovies_poster"/>
+                </header>
+                <div class="allmovies_description">
+                    <span>Rating: 12A</span>
+                    <span>Release date: 18/03/2016</span>
+                    <span>Running time: 103 mins</span>
+                </div>
+            </div>
+            <div class="allmovies_node">
+                <header>
+                    <h1 class="MovieTitle"><a href="#">Eddie The Eagle</a></h1>
+                    <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003382.jpg" class="allmovies_poster"/>
+                </header>
+                <div class="allmovies_description">
+                    <span>Rating: PG</span>
+                    <span>Release date: 01/04/2016</span>
+                    <span>Running time: 106 mins</span>
+                </div>
+            </div>
+            <div class="allmovies_node">
+                <header>
+                    <h1 class="MovieTitle"><a href="#">Capture The Flag</a></h1>
+                    <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003309.jpg" class="allmovies_poster"/>
+                </header>
+                <div class="allmovies_description">
+                    <span>Rating: PG</span>
+                    <span>Release date: 29/01/2016</span>
+                    <span>Running time: 94 mins</span>
+                </div>
+            </div>
+            <div class="allmovies_node">
+                <header>
+                    <h1 class="MovieTitle"><a href="#">Snoopy And Charlie Brown: The Peanuts Movie</a></h1>
+                    <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002616.jpg" class="allmovies_poster"/>
+                </header>
+                <div class="allmovies_description">
+                    <span>Rating: U</span>
+                    <span>Release date: 21/12/2015</span>
+                    <span>Running time: 93 mins</span>
+                </div>
+            </div>
+            <div class="allmovies_node">
+                <header>
+                    <h1 class="MovieTitle"><a href="#">Zootropolis</a></h1>
+                    <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003097.jpg" class="allmovies_poster"/>
+                </header>
+                <div class="allmovies_description">
+                    <span>Rating: PG</span>
+                    <span>Release date: 25/03/2016</span>
+                    <span>Running time: 108 mins</span>
+                </div>
+            </div>
+            <div class="allmovies_node">
+                <header>
+                    <h1 class="MovieTitle"><a href="#">The Huntsman: Winter's War</a></h1>
+                    <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003106.jpg" class="allmovies_poster"/>
+                </header>
+                <div class="allmovies_description">
+                    <span>Rating: TBC</span>
+                    <span>Release date: 08/04/2016</span>
+                    <span>Running time: 114 mins</span>
+                </div>
+            </div>
+            <div class="allmovies_node">
+                <header>
+                    <h1 class="MovieTitle"><a href="#">Goosebumbs</a></h1>
+                    <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003083.jpg" class="allmovies_poster"/>
+                </header>
+                <div class="allmovies_description">
+                    <span>Rating: PG</span>
+                    <span>Release date: 05/02/2016</span>
+                    <span>Running time: 103 mins</span>
+                </div>
+            </div>
+            <div class="allmovies_node">
+                <header>
+                    <h1 class="MovieTitle"><a href="#">High-Rise</a></h1>
+                    <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003384.jpg" class="allmovies_poster"/>
+                </header>
+                <div class="allmovies_description">
+                    <span>Rating: 15</span>
+                    <span>Release date: 18/03/2016</span>
+                    <span>Running time: 119 mins</span>
+                </div>
+            </div>
+            <div class="allmovies_node">
+                <header>
+                    <h1 class="MovieTitle"><a href="#">The Boy</a></h1>
+                    <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003332.jpg" class="allmovies_poster"/>
+                </header>
+                <div class="allmovies_description">
+                    <span>Rating: 15</span>
+                    <span>Release date: 18/03/2016</span>
+                    <span>Running time: 97 mins</span>
+                </div>
+            </div>
+            <div class="allmovies_node">
+                <header>
+                    <h1 class="MovieTitle"><a href="#">London Has Fallen</a></h1>
+                    <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002622.jpg" class="allmovies_poster"/>
+                </header>
+                <div class="allmovies_description">
+                    <span>Rating: 15</span>
+                    <span>Release date: 03/03/2016</span>
+                    <span>Running time: 99 mins</span>
+                </div>
+            </div>
+            <div class="allmovies_node">
+                <header>
+                    <h1 class="MovieTitle"><a href="#">Alvin And The Chipmunks: The Road Chip</a></h1>
+                    <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003000-md.jpg" class="allmovies_poster"/>
+                </header>
+                <div class="allmovies_description">
+                    <span>Rating: U</span>
+                    <span>Release date: 12/02/2016</span>
+                    <span>Running time: 92 mins</span>
+                </div>
+            </div>
+            <div class="allmovies_node">
+                <header>
+                    <h1 class="MovieTitle"><a href="#">Darwinte Parinamam(Malayalam)</a></h1>
+                    <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003480.jpg" class="allmovies_poster"/>
+                </header>
+                <div class="allmovies_description">
+                    <span>Rating: 12A</span>
+                    <span>Release date: 25/03/2016</span>
+                    <span>Running time: 148 mins</span>
+                </div>
+            </div>
+            <div class="allmovies_node">
+                <header>
+                    <h1 class="MovieTitle"><a href="#">The Divergent Series: Allegiant</a></h1>
+                    <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003094.jpg" class="allmovies_poster"/>
+                </header>
+                <div class="allmovies_description">
+                    <span>Rating: 12A</span>
+                    <span>Release date: 11/03/2016</span>
+                    <span>Running time: 121 mins</span>
+                </div>
+            </div>
+            <div class="allmovies_node">
+                <header>
+                    <h1 class="MovieTitle"><a href="#">Norm Of The North</a></h1>
+                    <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003433.jpg" class="allmovies_poster"/>
+                </header>
+                <div class="allmovies_description">
+                    <span>Rating: U</span>
+                    <span>Release date: 18/03/2016</span>
+                    <span>Running time: 90 mins</span>
+                </div>
+            </div>
+            <div class="allmovies_node">
+                <header>
+                    <h1 class="MovieTitle"><a href="#">Vaaliba Raja(Tamil)</a></h1>
+                    <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003243.jpg" class="allmovies_poster"/>
+                </header>
+                <div class="allmovies_description">
+                    <span>Rating: PG</span>
+                    <span>Release date: 08/01/2016</span>
+                    <span>Running time: 119 mins</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <div class="clearfix"></div>
+    <footer class="center-text">
+        <span>BCDC - Best Computing Design Company @ 2016. All Rights Reserved.<span>
+    </footer>
 </section>
+
+
 
 <div id="search-subpage-background" class="search-subpage-background-extra" >
     <img src="background2.jpg" id="search-subpage-image" class="search-subpage-image-extra"/>
 </div>
 
-<div class="clearfix"> </div>
 
 <script src="js/search.js"></script>
 <script>
@@ -129,8 +344,5 @@
 
 </script>
 </body>
-<footer>
-
-</footer>
 </html>
 

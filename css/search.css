@@ -71,16 +71,6 @@ body{
 }
 
 
-#search-detailed-container {
-
-    position: absolute;
-    display: block;
-    width: 100%;
-    display: none;
-    /* border: 1px solid green; */
-}
-
-
 #content {
     position: absolute;
     display: block;
@@ -113,7 +103,7 @@ body{
     z-index: 10;
     height: 100vh;
     min-height: 100vh;
-    padding-top: 65px; /* 50px (top: -50) + 15px */
+    padding-top: 55px; /* 50px (top: -50) + 15px */
     /* border: 1px solid yellow; */
 }
 
@@ -140,7 +130,7 @@ body{
     height: 100vh;
     max-height: 100vh;
     padding: 20px;
-    padding-top: 80px;
+    padding-top: 70px;
 }
 
 #search-detailed-actors {
@@ -175,9 +165,11 @@ body{
 .search-detailed-movie-node {
     position: relative;
     width: 20%;
-    height: 33vh;
+    height: 30vh;
     float: left;
-    padding: 15px;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
    /* display: none; */
 }
 
@@ -220,3 +212,33 @@ body{
 #search {
 
 }
+
+.center-text {
+    text-align: center;
+    position: relative;
+}
+
+.center-text:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.center-text span {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+
+footer {
+    width: 100%;
+    height: 75px;
+    text-align: center;
+    color: gray;
+}
+
+
+
+
+

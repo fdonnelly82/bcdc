@@ -1,10 +1,8 @@
 .featured-container {
-    margin-top: 50px;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
     height: 100vh;
-    padding-top: 75px /* navbar <50px> + <25px own> */;
 }
 
 
@@ -14,7 +12,6 @@
 
     width: 25%;
     /*height: 95vh;*/
-    padding: 0.5%;
     /*border: 1px solid red;*/
 
 }
@@ -22,14 +19,16 @@
 
 .featured-img {
     width: 100%;
-    height: 87%;
-    padding-top: 5%;
+    height: 75vh;
 }
 
-p{
-    color: white;
-    text-align: center;
-    padding-bottom: 0.1%;
-    font-size: 14px;
+
+.featured-title {
+    padding-top: 50px;
+    height: 25vh;
+    font-size: 40px;
+    color: orangered;
+    font-family: ‘Lucida Console’, Monaco, monospace;
+    opacity: 0.7;
 }
 

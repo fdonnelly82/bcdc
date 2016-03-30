@@ -1,38 +1,52 @@
-
 .allmovies_container{
-    position: absolute;
+    padding-top: 50px;
     width: 100%;
-    padding: 2%;
-    margin: 2% auto auto;
     background-color: black;
 }
+
+.allmovies-title {
+    height: 20vh;
+    font-size: 40px;
+    color: orangered;
+    font-family: ‘Lucida Console’, Monaco, monospace;
+    opacity: 0.7;
+}
+
 
 .allmovies_node{
     float: left;
     position: relative;
-    width: 200px;
-    height: 11%;
-    padding: 7px;
+    width: 15.66%;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+    border-top: 0;
+    height: 65vh;
+    margin-bottom: 15vh;
 }
 
 .allmovies_poster{
     width: 100%;
-    height: 87%;
+    height: 40vh;
 }
 
-p{
+.allmovies_description {
+    /*border: 1px solid gray;
+    border-top: 0; */
+}
+
+.allmovies_description span{
     color: white;
     text-align: center;
-    padding-bottom: 2%;
-    font-size: 10px;
+    width: 100%;
+    display: inline-block;
 }
 
 .MovieTitle{
     color: white;
     text-align: center;
     font-size: 125%;
-    height: 55px;
+    height: 10vh;
+    overflow: hidden;
 }
 
-a, a:hover, a:active, a:visited { color: white; }
-
+.MovieTitle a, a:hover, a:active, a:visited { color: white; text-decoration: none;}
