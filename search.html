@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Aberdeen Cinema Compare</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/search.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="css/search.css"/>
+    <link rel="stylesheet" type="text/css" href="css/perfect-scrollbar.min.css"/>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <script src="js/perfect-scrollbar.min.js"></script>
+    <script src="js/perfect-scrollbar.jquery.min.js"></script>
+
     <script src="js/yql.js"></script>
     <script src="js/cinema.js"></script>
 
@@ -43,42 +48,61 @@
 
 <section id="search-detailed-container">
     <div id="search-detailed-column-left">
+        <div id="search-detailed-movies-info"></div>
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Search movie or actor ..." id="search-detailed-box">
                         <span class="input-group-addon">
                             <i class="glyphicon glyphicon-search"></i>
                         </span>
         </div>
-        <div id="search-detailed-actor-container">
-            <!--
-            <div class="search-detailed-actor-node">John Travolta</div>
-            <div class="search-detailed-actor-node">Brad Pitt</div>
-            <div class="search-detailed-actor-node">Hugh Jackman</div>
-            <div class="search-detailed-actor-node">Joe Pesci</div>
-            <div class="search-detailed-actor-node">Olivier Fiassam</div>
-            -->
+        <div id="search-detailed-actors">
         </div>
     </div>
-    <div id="search-detailed-column-right"  class="modal">
+    <div id="search-detailed-column-right">
+        <div id="search-detailed-movies" class="modal"></div>
+        <div class="clearfix"></div>
     </div>
     <div class="clearfix"></div>
+    <div id="next-subpage">next subpage
+        <div class="test" >
+            <div class="content"></div>
+        </div>
+    </div>
 </section>
 
 
-<div id="search-subpage-background" class="search-subpage-background-extra">
+<div id="search-subpage-background" class="search-subpage-background-extra" >
     <img src="background2.jpg" id="search-subpage-image" class="search-subpage-image-extra"/>
 </div>
 
 
+<div class="clearfix"> </div>
 
-<div id="next-subpage">next subpage</div>
 <script src="js/search.js"></script>
 <script>
     $(document).ready(function () {
         $("#search-big-box").val("");
         vueFetchMovies(populateMovies);
+
+
+        console.log("xxx");
+        //$('.scroll-pane').jScrollPane();
+
+
+        $('#search-detailed-actors').perfectScrollbar();
+
+
+        $("#search-detailed-box").keyup(matchMoviesAndActors);
+
+       // $('.test').perfectScrollbar();
+        //$('.test2').perfectScrollbar();
     });
+
+
 </script>
 </body>
+<footer>
+
+</footer>
 </html>
 
