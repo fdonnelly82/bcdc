@@ -6,6 +6,10 @@ body{
     border-bottom: none;
 }
 
+#logo {
+    height: 23px;
+}
+
 #search-subpage-background {
     positon: absolute;
     height: 100vh;
