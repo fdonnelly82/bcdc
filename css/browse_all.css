@@ -1,5 +1,4 @@
 .allmovies_container{
-    padding-top: 50px;
     width: 100%;
     background-color: black;
 }
@@ -20,25 +19,13 @@
     margin-left: 0.5%;
     margin-right: 0.5%;
     border-top: 0;
-    height: 65vh;
-    margin-bottom: 15vh;
+    height: 50vh;
+
 }
 
-.allmovies_poster{
+#allmovies_poster{
     width: 100%;
     height: 40vh;
-}
-
-.allmovies_description {
-    /*border: 1px solid gray;
-    border-top: 0; */
-}
-
-.allmovies_description span{
-    color: white;
-    text-align: center;
-    width: 100%;
-    display: inline-block;
 }
 
 .MovieTitle{
@@ -50,3 +37,47 @@
 }
 
 .MovieTitle a, a:hover, a:active, a:visited { color: white; text-decoration: none;}
+
+.hvr-shrink {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+.hvr-shrink:hover, .hvr-shrink:focus, .hvr-shrink:active {
+  -webkit-transform: scale(0.9);
+  transform: scale(0.9);
+}
+
+/* Pulse */
+@-webkit-keyframes hvr-pulse {
+  25% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+
+  75% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+}
+
+@keyframes hvr-pulse {
+  25% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+
+  75% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+}
