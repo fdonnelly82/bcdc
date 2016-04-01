@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/search.css"/>
     <link rel="stylesheet" type="text/css" href="css/featured.css"/>
     <link rel="stylesheet" type="text/css" href="css/browse_all.css"/>
+    <link rel="stylesheet" type="text/css" href="css/compare.css"/>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
@@ -81,12 +82,75 @@
 
 
 
+    <!-- COMPARE -->
+
+    <section id="compare">
+        <div id = "compareMovies">
+            <div id = "bookingInfo">
+                <div id = "timedateInfo">
+                    <div id= "date">Date: <input id = "dPick" type="date"></div>
+                    Time: <input id = "time" type="time">
+                </div>
+                <div id = "ticketDetails">
+                    Type:
+                    <select id = "type">
+                        <option value="1">Student</option>
+                        <option value="2">Adult</option>
+                        <option value="3">Senior</option>
+                        <option value="4">4</option>
+                    </select>
+                    Vip: <input type = "checkbox" id="vip">
+                    Quantity: <input id = "quantity" type = "text">
+                </div>
+            </div>
+            <hr>
+
+            <div id = "compare1">
+                <div id = "photo1">
+                    <img src="images/vue.jpg">
+                </div>
+                <h1>£10.29</h1>
+                <input id = "timeComp" type="time">
+            </div>
+            <div id = "compare2">
+                <div id = "photo2">
+                    <img src="images/Cineworld.png">
+                </div>
+                <h1>£8.71</h1>
+                <input id = "timeComp" type="time">
+            </div>
+
+            <div id = "compare3">
+
+                <div id = "photo3">
+                    <img src="images/Belmont.jpg">
+                </div>
+                <h1>N/A</h1>
+                <input id = "timeComp" type="time">
+            </div>
+
+        </div>
+
+
+        <div id = "videoHolder">
+            <iframe width="100%" height="480" src="https://www.youtube.com/embed/NhWg7AQLI_8" frameborder="0" allowfullscreen frameborder="1"> </iframe>
+            <h1>Batman vs Superman<img src="images/12A.png"></h1>
+            <div id = "movieInfo">
+                <p> It's been nearly two years since Superman's (Henry Cavill) colossal battle with Zod (Michael Shannon) devastated the city of Metropolis. The loss of life and collateral damage left many feeling angry and helpless, including crime-fighting billionaire Bruce Wayne (Ben Affleck). Convinced that Superman is now a threat to humanity, Batman embarks on a personal vendetta to end his reign on Earth, while the conniving Lex Luthor (Jesse Eisenberg) launches his own crusade against the Man of Steel. </p>
+            </div>
+        </div>
+        </div>
+    </section>
+
+
+
     <!-- FEATURED -->
 
     <section id="featured">
         <!--Film name, rating and poster to be inserted here,
         clicking on a poster should bring up prices for ciniworld,
         Vue and Belmont on different paragraphs -->
+        <div id="featured-margin"></div>
         <div class="featured-container">
             <div class="center-text featured-title"><span>Trending Now</span></div>
 
@@ -106,6 +170,11 @@
         </div>
 
     </section>
+
+
+
+
+    <!-- BROWSE ALL -->
 
 
     <section id = "browse_all">
@@ -252,22 +321,24 @@
                     <h1 class="MovieTitle"><a href="#">Vaaliba Raja(Tamil)</a></h1>
                 </div>
             </div>
-
+            <div class="clearfix"></div>
         </div>
     </section>
 
-
     <div class="clearfix"></div>
-    <footer class="center-text">
-        <span>BCDC - Best Computing Design Company @ 2016. All Rights Reserved.<span>
+
+
+    <footer>
+        <div>BCDC - Best Computing Design Company</div>
+        <div>All Rights Reserved @ 2016</div>
+        <div><a href="https://github.com/fdonnelly82/bcdc" style="color: blue;">GitHub</a></div>
     </footer>
 </section>
-
-
 
 <div id="search-subpage-background" class="search-subpage-background-extra" >
     <img src="background2.jpg" id="search-subpage-image" class="search-subpage-image-extra"/>
 </div>
+
 
 
 <script src="js/search.js"></script>

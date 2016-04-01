@@ -237,12 +237,16 @@ body{
 
 footer {
     width: 100%;
-    height: 75px;
     text-align: center;
     color: gray;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
-
+footer a {
+    color: gray !important;
+    text-decoration: underline !important;
+}
 
 
 
