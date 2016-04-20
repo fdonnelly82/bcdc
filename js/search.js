@@ -23,8 +23,6 @@ $("#search-big-box").keyup(function (event)
         //$("#search-subpage-background").css("background-color","black");
 
         //$("#search-big-box").animate({});
-
-
     }
 });
 

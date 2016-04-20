@@ -77,7 +77,7 @@
  */
 var vueFetchMovies = function(callback)
 {
-    callbackFunc = function(response)
+    vueCallbackFunc = function(response)
     {
         var html = yqlResponseToHTML(response);
 
@@ -86,6 +86,7 @@ var vueFetchMovies = function(callback)
         var movie_div = html.find('[id^=dnn_ctr1418_ViewCinemaListing_MKII_rptSynopsis_divFilm_]');
 
         var movie_session = [];
+        var month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
         for(i = 0; i < movie_div.length; i++)
         {
             movie_date = $(movie_div[i]).find('[class^=sysnopsisFullDate]');
@@ -93,9 +94,14 @@ var vueFetchMovies = function(callback)
 
             for(j = 0; j < movie_date.length; j++)
             {
+                var date = $(movie_date[j]).text().trim();
+                date = date.split(" ");
+                var day = date[1].replace("st","").replace("nd","").replace("rd","").replace("th","");
+                var movieMonth = month.indexOf(date[2]) + 1;
+
                 var session = {
-                    date : $(movie_date[j]).text().trim(),
-                    projection : [],
+                    date : day + "/" + movieMonth + "/2016",
+                    projection : []
                 };
 
                 var session_date_details = $(movie_date[j]).next().find("a");
@@ -124,7 +130,7 @@ var vueFetchMovies = function(callback)
                 session : movie_session[i]
             });
 
-            movie[movie[i].name] = movie[i];
+            movie[movie[i].simpleName] = movie[i];
 
             for(var j = 0; j < movie[i].session.length; j++){
                 movie[i].session[movie[i].session[j].date] = movie[i].session[j];
@@ -135,15 +141,13 @@ var vueFetchMovies = function(callback)
     }
 
     //yqlUrlQuery("https://www.myvue.com/latest-movies/view/all-times","callbackFunc",true);
-    yqlUrlQuery("http://www.myvue.com/latest-movies/cinema/aberdeen?__EVENTTARGET=dnn%24ctr1418%24ViewCinemaListing_MKII%24lbFull&__EVENTARGUMENT=","callbackFunc",true);
+    yqlUrlQuery("http://www.myvue.com/latest-movies/cinema/aberdeen?__EVENTTARGET=dnn%24ctr1418%24ViewCinemaListing_MKII%24lbFull&__EVENTARGUMENT=","vueCallbackFunc");
 }
-
-
 
 
 var vueGetProjectionPricing = function(projection_url, callback)
 {
-    projectionPricingCallback = function(response)
+    vueProjectionPricingCallback = function(response)
     {
         html = yqlResponseToHTML(response);
 
@@ -178,7 +182,7 @@ var vueGetProjectionPricing = function(projection_url, callback)
         callback(projectionPricing);
     }
 
-    yqlUrlQuery(projection_url,"projectionPricingCallback",true);
+    yqlUrlQuery(projection_url,"vueProjectionPricingCallback");
 }
 
 
