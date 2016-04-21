@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="js/miscellaneous.js"></script>
+    <script src="js/yql.js"></script>
+    <script src="js/belmont.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/cineworld.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+
+
+    var callbackFunction = function (movie) {
+        for( var i=0; i < movie.length; i++ ) {
+            console.log(movie[i].name);
+            for(var j=0; j < movie[i].session.length; j++) {
+                console.log("    " + movie[i].session[j].date)
+                for(var k = 0; k < movie[i].session[j].projection.length; k++) {
+                    console.log("        " + movie[i].session[j].projection[k].time)
+                }
+            }
+        }
+    }
+
+    cineworldFetchMovies(callbackFunction);
+
+</script>
+</html>
