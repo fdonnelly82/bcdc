@@ -1,6 +1,6 @@
 var cineworldFetchMovies = function(callback)
 {
-    belmontFetchMoviesCallback = function(response)
+    cineworldFetchMoviesCallback = function(response)
     {
         var html = yqlResponseToHTML(response);
 
@@ -89,5 +89,5 @@ var cineworldFetchMovies = function(callback)
         callback(movie);
     }
 
-    yqlUrlQuery("https://film.list.co.uk/cinema/26230-cineworld-aberdeen-union-square/","belmontFetchMoviesCallback");
+    yqlUrlQuery("https://film.list.co.uk/cinema/26230-cineworld-aberdeen-union-square/","cineworldFetchMoviesCallback");
 }

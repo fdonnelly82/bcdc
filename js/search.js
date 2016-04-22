@@ -32,7 +32,6 @@ var actorsCompleted = 0;
 var actorsFinishedRequesting = false;
 var requestsSent = 0;
 var actors = [];
-var allMovies = [];
 var highlightedActorNode = null;
 
 
@@ -182,42 +181,54 @@ var populateActors = function() {
 }
 
 
-
-var populateMovies = function (movie)
+var populateSearchMovies = function (movies)
 {
     // do not include:
     // - opera/theater performances ("live:")
     // - marathons ("marathon")
     // - combined projections ("double bill")
     //  (TODO: make a special section for these later?)
+    /*
     var parsedMovie = [];
-    for(var i = 0; i < movie.length; i++)
-    {
-        if(movie[i].name.indexOf("Live:") != -1 || movie[i].name.indexOf("Marathon") != -1  || movie[i].name.indexOf("Double Bill") != -1 )
-        {
+    for (var i = 0; i < movie.length; i++) {
+        if (movie[i].name.indexOf("Live:") != -1 || movie[i].name.indexOf("Marathon") != -1 || movie[i].name.indexOf("Double Bill") != -1) {
             continue;
         }
-        else
-        {
+        else {
             parsedMovie.push(movie[i]);
-            allMovies.push(movie[i]);
         }
     }
 
-    movie = parsedMovie;
+     movie = parsedMovie;
+    */
 
-    for(var i = 0; i < movie.length; i++)
-    {
+    for (var i = 0; i < movies.length; i++) {
+        var movie;
+        if(movies[i]["vue"] != null)
+            movie = movies[i]["vue"];
+        else if(movies[i]["cineworld"] != null)
+            movie = movies[i]["cineworld"];
+        else
+            movie = movies[i]["belmont"];
+
+
         var div = document.createElement("div");
-        $(div).attr("movieName",movie[i].name.toLowerCase());
-        $(div).data("movie",movie[i]);
-        $(div).attr("class","search-detailed-movie-node");
-        $(div).html("<img class='search-detailed-movie-img' src='" + movie[i].thumbnail + "' data-toggle='tooltip' " +
-                    "data-placement='bottom' title='" + movie[i].name + "'/>");
+        $(div).attr("movieName", movie.simpleName);
+        $(div).data("movie", movie);
+        $(div).attr("class", "search-detailed-movie-node");
+        $(div).html("<img class='search-detailed-movie-img' src='" + movie.thumbnail + "' data-toggle='tooltip' " +
+            "data-placement='bottom' title='" + movie.name + "'/>");
         $("#search-detailed-movies").append(div);
     }
 
     $('[data-toggle="tooltip"]').tooltip();
+}
+
+
+
+var setup = function (movie)
+{
+    populateSearchMovies(movie);
 
     $("#search-big-loading-info").html("Loading completed.");
 
