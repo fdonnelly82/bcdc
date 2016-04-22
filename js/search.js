@@ -32,7 +32,6 @@ var actorsCompleted = 0;
 var actorsFinishedRequesting = false;
 var requestsSent = 0;
 var actors = [];
-var allMovies = [];
 var highlightedActorNode = null;
 
 
@@ -182,8 +181,7 @@ var populateActors = function() {
 }
 
 
-
-var populateMovies = function (movie)
+var populateSearchMovies = function (movie)
 {
     // do not include:
     // - opera/theater performances ("live:")
@@ -191,33 +189,35 @@ var populateMovies = function (movie)
     // - combined projections ("double bill")
     //  (TODO: make a special section for these later?)
     var parsedMovie = [];
-    for(var i = 0; i < movie.length; i++)
-    {
-        if(movie[i].name.indexOf("Live:") != -1 || movie[i].name.indexOf("Marathon") != -1  || movie[i].name.indexOf("Double Bill") != -1 )
-        {
+    for (var i = 0; i < movie.length; i++) {
+        if (movie[i].name.indexOf("Live:") != -1 || movie[i].name.indexOf("Marathon") != -1 || movie[i].name.indexOf("Double Bill") != -1) {
             continue;
         }
-        else
-        {
+        else {
             parsedMovie.push(movie[i]);
-            allMovies.push(movie[i]);
         }
     }
 
     movie = parsedMovie;
 
-    for(var i = 0; i < movie.length; i++)
-    {
+    for (var i = 0; i < movie.length; i++) {
         var div = document.createElement("div");
-        $(div).attr("movieName",movie[i].name.toLowerCase());
-        $(div).data("movie",movie[i]);
-        $(div).attr("class","search-detailed-movie-node");
+        $(div).attr("movieName", movie[i].name.toLowerCase());
+        $(div).data("movie", movie[i]);
+        $(div).attr("class", "search-detailed-movie-node");
         $(div).html("<img class='search-detailed-movie-img' src='" + movie[i].thumbnail + "' data-toggle='tooltip' " +
-                    "data-placement='bottom' title='" + movie[i].name + "'/>");
+            "data-placement='bottom' title='" + movie[i].name + "'/>");
         $("#search-detailed-movies").append(div);
     }
 
     $('[data-toggle="tooltip"]').tooltip();
+}
+
+
+
+var setup = function (movie)
+{
+    populateSearchMovies(movie);
 
     $("#search-big-loading-info").html("Loading completed.");
 

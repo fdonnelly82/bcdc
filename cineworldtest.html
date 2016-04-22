@@ -10,13 +10,14 @@
     <script src="js/belmont.js"></script>
     <script src="js/vue.js"></script>
     <script src="js/cineworld.js"></script>
+    <script src="js/setup.js"></script>
 </head>
 <body>
 
 </body>
 <script>
 
-
+/*
     var callbackFunction = function (movie) {
         for( var i=0; i < movie.length; i++ ) {
             console.log(movie[i].name);
@@ -30,6 +31,20 @@
     }
 
     cineworldFetchMovies(callbackFunction);
+
+*/
+
+
+
+fetchAllMovies(function() {
+    console.log(".......");
+    mergeMovies();
+    console.log(".......");
+    console.log(AllMovies);
+});
+
+
+
 
 </script>
 </html>
