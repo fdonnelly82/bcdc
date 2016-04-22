@@ -16,14 +16,14 @@
     <!--Idea is to load featured films form an external js file, still working on it-->
     <script src="js/featured.js"></script>
 
-    <script>
+   <<script>
         //when page loads, film name, certificate and poster loads with it
         $(document).ready(function(){
             //ajax to connect to cineworld api to get film data
             $.ajax({
                 url: 'http://www.cineworld.com/api/quickbook/films',
                 type: 'GET',
-                data: {key: 'your developer key', full: true, cinema: 1},
+                data: {key: 'qUnEyRXt', full: true, cinema: 1},
                 dataType: 'jsonp',
                 success: parseFilms
             });
@@ -40,9 +40,10 @@
                 //takes in film name, classification, poster url and places them in appropriate tags
             } else {
                 $.each(response.films, function () {
-                    html += '<p>' + this.title + ' (' + this.classification + ')</p>';
-                    $('img').attr("src", this.poster_url).load(function(){
-                        this.width;
+                    //html += '<p>' + this.title + ' (' + this.classification + ')</p>';
+                    //shows one poster
+                    html += $('img').attr("src", this.poster_url).load(function(){
+                           $(this).width.height.appendTo('img');
                     });
                 });
             }
@@ -78,25 +79,25 @@
 </nav>
 
 <section>
-    <!--Film name, rating and poster to be inserted here,
+    <!--Film  poster to be inserted here,
     clicking on a poster should bring up prices for ciniworld,
     Vue and Belmont on compare page
     See cineworld api documentation jQuery widget page for how to add images-->
     <div class="featured-container">
         <div class="featured-node">
-            <p>Batman V Superman (12)</p>
+            <p></p>
             <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002945-lg.jpg" class="featured-img">
         </div>
         <div class="featured-node">
-            <p>Deadpool (15)</p>
+            <p></p>
             <img id="poster" src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002984-lg.jpg" class="featured-img">
         </div>
         <div class="featured-node">
-            <p>Kung Fu Panda 3 (PG)</p>
+            <p></p>
             <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002979-lg.jpg" class="featured-img">
         </div>
         <div class="featured-node">
-            <p>Captain America:Civil War (12)</p>
+            <p></p>
             <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002968-lg.jpg" class="featured-img">
         </div>
     </div>
