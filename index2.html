@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aberdeen Cinema Compare</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="css/perfect-scrollbar.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/search.css"/>
+    <link rel="stylesheet" type="text/css" href="css/featured.css"/>
+    <link rel="stylesheet" type="text/css" href="css/browse_all.css"/>
+    <link rel="stylesheet" type="text/css" href="css/compare.css"/>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <script src="js/perfect-scrollbar.min.js"></script>
+    <script src="js/perfect-scrollbar.jquery.min.js"></script>
+
+    <script src="js/miscellaneous.js"></script>
+    <script src="js/yql.js"></script>
+    <script src="js/belmont.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/cineworld.js"></script>
+    <script src="js/setup.js"></script>
+    <script src="js/scroll.js"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top navbar-custom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand pull-left" href="#"><img id="logo" src="images/cinemalogo5.png"></a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li id="nav-search"><a class="active" href="#search">Search</a></li>
+            <li id="nav-compare"><a href="#compare">Compare</a></li>
+            <li id="nav-featured"><a href="#featured">Featured</a></li>
+            <li id="nav-browse-all"><a href="#browse_all">Browse all</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section id="welcome">
+    <div id="search-big-outer">
+        <div id="search-big-inner">
+            <div class="input-group" id="search-big-container">
+                <input type="text" class="form-control" placeholder="Search movie or actor ..." id="search-big-box">
+                        <span class="input-group-addon"  id="search-big-button-span">
+                            <i class="glyphicon glyphicon-search" id="search-big-button"></i>
+                        </span>
+            </div>
+
+            <div id="search-big-loading-info">Loading movies information.. <img src="ajax-loader(3).gif" /></div>
+        </div>
+    </div>
+</section>
+
+
+
+<section id="content">
+
+
+    <!-- SEARCH -->
+
+    <section id="search">
+        <div id="search-detailed-column-left">
+            <div id="search-detailed-movies-info"></div>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search movie or actor ..." id="search-detailed-box">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </span>
+            </div>
+            <div id="search-detailed-actors">
+            </div>
+        </div>
+        <div id="search-detailed-column-right">
+            <div id="search-detailed-movies" class="modal"></div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+
+    </section>
+
+
+
+
+    <!-- COMPARE -->
+
+    <section id="compare">
+        <div id = "compareMovies">
+            <div id = "bookingInfo">
+                <div id = "timedateInfo">
+                    <div id= "date">Date: <input id = "dPick" type="date"></div>
+                    Time: <input id = "time" type="time">
+                </div>
+                <div id = "ticketDetails">
+                    Type:
+                    <select id = "type">
+                        <option value="1">Student</option>
+                        <option value="2">Adult</option>
+                        <option value="3">Senior</option>
+                        <option value="4">4</option>
+                    </select>
+                    Vip: <input type = "checkbox" id="vip">
+                    Quantity: <input id = "quantity" type = "text">
+                </div>
+            </div>
+            <hr>
+
+            <div id = "compare1">
+                <div id = "photo1">
+                    <img src="images/vue.jpg">
+                </div>
+                <h1>£10.29</h1>
+                <input id = "timeComp" type="time">
+            </div>
+            <div id = "compare2">
+                <div id = "photo2">
+                    <img src="images/Cineworld.png">
+                </div>
+                <h1>£8.71</h1>
+                <input id = "timeComp" type="time">
+            </div>
+
+            <div id = "compare3">
+
+                <div id = "photo3">
+                    <img src="images/Belmont.jpg">
+                </div>
+                <h1>N/A</h1>
+                <input id = "timeComp" type="time">
+            </div>
+
+        </div>
+
+
+        <div id = "videoHolder">
+            <iframe width="100%" height="480" src="https://www.youtube.com/embed/NhWg7AQLI_8" frameborder="0" allowfullscreen frameborder="1"> </iframe>
+            <h1>Batman vs Superman<img src="images/12A.png"></h1>
+            <div id = "movieInfo">
+                <p> It's been nearly two years since Superman's (Henry Cavill) colossal battle with Zod (Michael Shannon) devastated the city of Metropolis. The loss of life and collateral damage left many feeling angry and helpless, including crime-fighting billionaire Bruce Wayne (Ben Affleck). Convinced that Superman is now a threat to humanity, Batman embarks on a personal vendetta to end his reign on Earth, while the conniving Lex Luthor (Jesse Eisenberg) launches his own crusade against the Man of Steel. </p>
+            </div>
+        </div>
+        </div>
+    </section>
+
+
+
+    <!-- FEATURED -->
+
+    <section id="featured">
+        <!--Film name, rating and poster to be inserted here,
+        clicking on a poster should bring up prices for ciniworld,
+        Vue and Belmont on different paragraphs -->
+        <div id="featured-margin"></div>
+        <div class="featured-container">
+            <div class="center-text featured-title"><span>Trending Now</span></div>
+
+            <div class="featured-node">
+                <a href="compare.html"><img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002945-lg.jpg" id="featured-img" class="hvr-float-shadow"></a>
+            </div>
+            <div class="featured-node">
+                <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002984-lg.jpg" id="featured-img" class="hvr-float-shadow">
+            </div>
+            <div class="featured-node">
+
+                <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002979-lg.jpg" id="featured-img" class="hvr-float-shadow">
+            </div>
+            <div class="featured-node">
+                <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002968-lg.jpg" id="featured-img" class="hvr-float-shadow">
+            </div>
+        </div>
+
+    </section>
+
+
+
+
+    <!-- BROWSE ALL -->
+
+
+    <section id = "browse_all">
+        <!-- Container with nodes inside for each movie -->
+        <div class="allmovies_container">
+            <div class="center-text allmovies-title"><span>All Movies Listing</span></div>
+            <div class="allmovies_node">
+                <header>
+                    <a href="compare.html"><img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002945.jpg" id="allmovies_poster" class = "hvr-shrink"/></a>
+                </header>
+                <div class="allmovies_description">
+                    <h1 class="MovieTitle"><a href="compare.html">Batman V Superman: Dawn of Justice</a></h1>
+                </div>
+            </div>
+            <div class="allmovies_node">
+                <header>
+                    <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002979.jpg" id="allmovies_poster" class = "hvr-shrink"/>
+                </header>
+                <div class="allmovies_description">
+                    <h1 class="MovieTitle"><a href="#">Kung Fu Panda 3</a></h1>
+                </div>
+            </div>
+            <div class="allmovies_node">
+                <header>
+                    <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003096.jpg" id="allmovies_poster" class = "hvr-shrink"/>
+                </header>
+                <div class="allmovies_description">
+                    <h1 class="MovieTitle"><a href="#">My Big Fat Greek Wedding 2</a></h1>
+                </div>
+            </div>
+            <div class="allmovies_node">
+                <header>
+                    <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003360.jpg" id="allmovies_poster" class = "hvr-shrink"/>
+                </header>
+                <h1 class="MovieTitle"><a href="#">10 Cloverfield Lane</a></h1>
+            </div>
+        </div>
+        <div class="allmovies_node">
+            <header>
+                <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003382.jpg" id="allmovies_poster" class = "hvr-shrink"/>
+            </header>
+            <div class="allmovies_description">
+                <h1 class="MovieTitle"><a href="#">Eddie The Eagle</a></h1>
+            </div>
+        </div>
+        <div class="allmovies_node">
+            <header>
+                <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003309.jpg" id="allmovies_poster" class = "hvr-shrink"/>
+            </header>
+            <div class="allmovies_description">
+                <h1 class="MovieTitle"><a href="#">Capture The Flag</a></h1>
+            </div>
+        </div>
+        <div class="allmovies_node">
+            <header>
+                <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002616.jpg" id="allmovies_poster" class = "hvr-shrink"/>
+            </header>
+            <h1 class="MovieTitle"><a href="#">Snoopy And Charlie Brown: The Peanuts Movie</a></h1>
+        </div>
+        <div class="allmovies_node">
+            <header>
+                <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003097.jpg" id="allmovies_poster" class = "hvr-shrink"/>
+            </header>
+            <div class="allmovies_description">
+                <h1 class="MovieTitle"><a href="#">Zootropolis</a></h1>
+            </div>
+        </div>
+        <div class="allmovies_node">
+            <header>
+                <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003106.jpg" id="allmovies_poster" class = "hvr-shrink"/>
+            </header>
+            <div class="allmovies_description">
+                <h1 class="MovieTitle"><a href="#">The Huntsman: Winter's War</a></h1>
+            </div>
+        </div>
+        <div class="allmovies_node">
+            <header>
+                <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003083.jpg" id="allmovies_poster" class = "hvr-shrink"/>
+            </header>
+            <div class="allmovies_description">
+                <h1 class="MovieTitle"><a href="#">Goosebumbs</a></h1>
+            </div>
+        </div>
+        <div class="allmovies_node">
+            <header>
+                <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003384.jpg" id="allmovies_poster" class = "hvr-shrink"/>
+            </header>
+            <div class="allmovies_description">
+                <h1 class="MovieTitle"><a href="#">High-Rise</a></h1>
+            </div>
+        </div>
+        <div class="allmovies_node">
+            <header>
+                <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003332.jpg" id="allmovies_poster" class = "hvr-shrink"/>
+            </header>
+            <div class="allmovies_description">
+                <h1 class="MovieTitle"><a href="#">The Boy</a></h1>
+            </div>
+        </div>
+        <div class="allmovies_node">
+            <header>
+                <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002622.jpg" id="allmovies_poster" class = "hvr-shrink"/>
+            </header>
+            <div class="allmovies_description">
+                <h1 class="MovieTitle"><a href="#">London Has Fallen</a></h1>
+            </div>
+        </div>
+        <div class="allmovies_node">
+            <header>
+                <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003000-md.jpg" id="allmovies_poster" class = "hvr-shrink"/>
+            </header>
+            <div class="allmovies_description">
+                <h1 class="MovieTitle"><a href="#">Alvin And The Chipmunks: The Road Chip</a></h1>
+            </div>
+        </div>
+        <div class="allmovies_node">
+            <header>
+                <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003480.jpg" id="allmovies_poster" class = "hvr-shrink"/>
+            </header>
+            <h1 class="MovieTitle"><a href="#">Darwinte Parinamam(Malayalam)</a></h1>
+        </div>
+        <div class="allmovies_node">
+            <header>
+                <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003094.jpg" id="allmovies_poster" class = "hvr-shrink"/>
+            </header>
+            <div class="allmovies_description">
+                <h1 class="MovieTitle"><a href="#">The Divergent Series: Allegiant</a></h1>
+            </div>
+        </div>
+        <div class="allmovies_node">
+            <header>
+                <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003433.jpg" id="allmovies_poster" class = "hvr-shrink"/>
+            </header>
+            <div class="allmovies_description">
+                <h1 class="MovieTitle"><a href="#">Norm Of The North</a></h1>
+            </div>
+        </div>
+        <div class="allmovies_node">
+            <header>
+
+                <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00003243.jpg" id="allmovies_poster" class = "hvr-shrink"/>
+            </header>
+            <div class="allmovies_description">
+                <h1 class="MovieTitle"><a href="#">Vaaliba Raja(Tamil)</a></h1>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        </div>
+    </section>
+
+    <div class="clearfix"></div>
+
+
+    <footer>
+        <div>BCDC - Best Computing Design Company</div>
+        <div>All Rights Reserved @ 2016</div>
+        <div><a href="https://github.com/fdonnelly82/bcdc" style="color: blue;">GitHub</a></div>
+    </footer>
+</section>
+
+<div id="search-subpage-background" class="search-subpage-background-extra" >
+    <img src="background2.jpg" id="search-subpage-image" class="search-subpage-image-extra"/>
+</div>
+
+
+
+<script src="js/search.js"></script>
+<script>
+    $(document).ready(function () {
+        fetchAllMovies(function() {
+            mergeMovies();
+            setup(AllMovies);
+
+            $("#search-big-box").val("");
+
+            $('#search-detailed-actors').perfectScrollbar();
+
+            $("#search-detailed-box").keyup(matchMoviesAndActors);
+
+            $(window).scroll(onScroll);
+
+            console.log(AllMovies);
+        });
+    });
+
+
+</script>
+</body>
+</html>
+

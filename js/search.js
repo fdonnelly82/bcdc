@@ -181,13 +181,14 @@ var populateActors = function() {
 }
 
 
-var populateSearchMovies = function (movie)
+var populateSearchMovies = function (movies)
 {
     // do not include:
     // - opera/theater performances ("live:")
     // - marathons ("marathon")
     // - combined projections ("double bill")
     //  (TODO: make a special section for these later?)
+    /*
     var parsedMovie = [];
     for (var i = 0; i < movie.length; i++) {
         if (movie[i].name.indexOf("Live:") != -1 || movie[i].name.indexOf("Marathon") != -1 || movie[i].name.indexOf("Double Bill") != -1) {
@@ -198,15 +199,25 @@ var populateSearchMovies = function (movie)
         }
     }
 
-    movie = parsedMovie;
+     movie = parsedMovie;
+    */
 
-    for (var i = 0; i < movie.length; i++) {
+    for (var i = 0; i < movies.length; i++) {
+        var movie;
+        if(movies[i]["vue"] != null)
+            movie = movies[i]["vue"];
+        else if(movies[i]["cineworld"] != null)
+            movie = movies[i]["cineworld"];
+        else
+            movie = movies[i]["belmont"];
+
+
         var div = document.createElement("div");
-        $(div).attr("movieName", movie[i].name.toLowerCase());
-        $(div).data("movie", movie[i]);
+        $(div).attr("movieName", movie.simpleName);
+        $(div).data("movie", movie);
         $(div).attr("class", "search-detailed-movie-node");
-        $(div).html("<img class='search-detailed-movie-img' src='" + movie[i].thumbnail + "' data-toggle='tooltip' " +
-            "data-placement='bottom' title='" + movie[i].name + "'/>");
+        $(div).html("<img class='search-detailed-movie-img' src='" + movie.thumbnail + "' data-toggle='tooltip' " +
+            "data-placement='bottom' title='" + movie.name + "'/>");
         $("#search-detailed-movies").append(div);
     }
 
