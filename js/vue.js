@@ -84,6 +84,7 @@ var vueFetchMovies = function(callback)
         var movie_hyperlink = html.find('[id^=dnn_ctr1418_ViewCinemaListing_MKII_rptSynopsis_hlInfo_]');
         var movie_img = html.find('[id^=dnn_ctr1418_ViewCinemaListing_MKII_rptSynopsis_imgFilmImage_]');
         var movie_div = html.find('[id^=dnn_ctr1418_ViewCinemaListing_MKII_rptSynopsis_divFilm_]');
+        var ageClassification = html.find('[id^=dnn_ctr1418_ViewCinemaListing_MKII_rptSynopsis_imgCert_]');
 
         var movie_session = [];
         var month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -122,11 +123,27 @@ var vueFetchMovies = function(callback)
         var movie = [];
         for(var i = 0; i < movie_hyperlink.length; i++)
         {
+            var age = $(ageClassification[i]).attr("src");
+            age = age.split("cert_");
+            age = age[1].split(".png");
+            age = age[0].split("%");
+            age = age[0];
+
+            var synopsisRunningTime = $(movie_div[i]).find(".filmListFilmInfo").children();
+            var synopsis = $(synopsisRunningTime[2]).text().trim();
+
+            var runningTime = $(synopsisRunningTime[3]).text().trim().replace("Running time:","").split("mins.")[0];
+
+
             movie.push({
                 name: $(movie_hyperlink[i]).text(),
                 simpleName: $(movie_hyperlink[i]).text().toLowerCase().replace(","," "),
                 url: "https://www.myvue.com" + $(movie_hyperlink[i]).attr('href'),
+                synopsis : synopsis,
                 thumbnail: "https://www.myvue.com" + $(movie_img[i]).attr("src"),
+                runningTime: runningTime,
+                ageClassification : age,
+                extra : null,
                 session : movie_session[i]
             });
 
@@ -145,7 +162,7 @@ var vueFetchMovies = function(callback)
 }
 
 
-var vueGetProjectionPricing = function(projection_url, callback)
+var vueGetProjectionPricing = function(projection, callback)
 {
     vueProjectionPricingCallback = function(response)
     {
@@ -154,39 +171,80 @@ var vueGetProjectionPricing = function(projection_url, callback)
         var booking_div = html.find('.booking_seat_info');
         var price = [];
 
+
+        // either data was cached by yql or browser
+        // OR the time was loaded but when user requested it, it was no longer available
+        // say it's 14:02, but requested time is 14:00
+        // in this case projection.pricing remains null and a message can be put like "Projection no longer available".
+        if(booking_div.length == 0)
+        {
+            callback(projection);
+            return;
+        }
+
         for(var i = 0; i < booking_div.length; i++)
         {
             $(booking_div[i]).children().first().remove();
             price.push($(booking_div[i]).text().trim().substr(4));
         }
 
-        var projectionPricing = {
+        projection.pricing = {
             adult : {
                 standard : price[0],
                 vip : price[1],
             },
-            senior : {
+            child : {
                 standard : price[2],
                 vip : price[3],
             },
-            student : {
+            senior : {
                 standard : price[4],
                 vip : price[5],
             },
-            teen : {
+            student : {
                 standard : price[6],
                 vip : price[7],
+            },
+            teen : {
+                standard : price[8],
+                vip : price[9],
+            },
+            allInclusiveFamily : {
+                standard : price[10],
+                vip : price[11],
+            },
+            familyX4  : {
+                standard : price[12],
+                vip : price[13],
             }
         }
 
-        callback(projectionPricing);
+
+        callback(projection);
     }
 
-    yqlUrlQuery(projection_url,"vueProjectionPricingCallback");
+    yqlUrlQuery(projection.url,"vueProjectionPricingCallback");
 }
 
 
+var vueGetExtra = function(movie, callback)
+{
+    vueExtraCallback = function(response)
+    {
+        html = yqlResponseToHTML(response);
 
+
+        movie.extra = {
+            description : html.find(".filmSynopsis").text().trim(),
+            image : "https://www.myvue.com" + html.find("#dnn_ctr1419_ViewFilmInfo_MKII_imgFilmImage").attr("src")
+        }
+
+
+        callback(movie);
+    }
+
+    yqlUrlQuery(movie.url,"vueExtraCallback");
+}
 
 
 

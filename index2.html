@@ -22,7 +22,7 @@
     <script src="js/belmont.js"></script>
     <script src="js/vue.js"></script>
     <script src="js/cineworld.js"></script>
-    <script src="js/setup.js"></script>
+    <script src="js/engine.js"></script>
     <script src="js/scroll.js"></script>
 
 </head>
@@ -348,20 +348,18 @@
 <script src="js/search.js"></script>
 <script>
     $(document).ready(function () {
-        fetchAllMovies(function() {
-            mergeMovies();
-            setup(AllMovies);
-
-            $("#search-big-box").val("");
-
-            $('#search-detailed-actors').perfectScrollbar();
-
-            $("#search-detailed-box").keyup(matchMoviesAndActors);
-
-            $(window).scroll(onScroll);
-
-            console.log(AllMovies);
+        /*
+        initWebApp(function(){
+            console.log(BelmontMovies);
         });
+        */
+
+        cineworldFetchMovies(function(movies) {
+            cineworldGetExtra(movies[0], function (movie) {
+                console.log(movie);
+            });
+        });
+
     });
 
 

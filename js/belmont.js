@@ -25,12 +25,20 @@ var belmontFetchMovies = function(callback)
 
             var url = "http://www.belmontfilmhouse.com" + $(a_urlname).attr("href");
 
+            var runningTimeAgeClassification = $(movie_li[i]).find('dd');
+            var runningTime = $(runningTimeAgeClassification[2]).text().replace(" minutes","");
+            var ageClassification = $(runningTimeAgeClassification[3]).text().split("Rated ")[1];
+
 
             movie.push({
                 name: name,
                 simpleName: toSimpleName(name),
                 url: url,
+                synopsis: name,
+                runningTime: runningTime,
                 thumbnail: thumbnail,
+                ageClassification: ageClassification,
+                extra: null,
                 session: []
             });
 
@@ -53,6 +61,21 @@ var belmontFetchProjections = function(movie,callback)
     {
         var html = yqlJsonResponseToHTML(response);
         var projections_url = $(html).find("#bookTix").attr("href");
+
+        var name = $(html).find("#headlineDetails").children().first().text().trim();
+
+        if($($(html).find("#synopsis").children()[0]).find("img").length == 1)
+            $($(html).find("#synopsis").children()[0]).remove();
+
+        var description = $(html).find("#synopsis").children();
+        description = $(description[0]).text().trim() + $(description[1]).text().trim();
+
+
+        movie[toSimpleName(name)].extra = {
+            description : description,
+            image : movie[toSimpleName(name)].thumbnail.replace("thumbnail","medium")
+        }
+
 
         yqlUrlQuery(encodeURI(projections_url),"belmontFetchProjectionCallbackStepTwo","xml",false);
     }
