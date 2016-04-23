@@ -92,6 +92,12 @@ var cineworldFetchMovies = function(callback)
                         pricing : null
                     })
                 }
+
+                if(movie[i].session[date].projection.length == 0)
+                {
+                    delete movie[i].session[date];
+                    movie[i].session.splice(movie[i].session.length - 1,1);
+                }
             }
         }
 
