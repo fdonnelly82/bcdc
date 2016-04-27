@@ -13,12 +13,12 @@ var fetchAllMovies = function(callback)
         VueMovies = movies;
         console.log("vue");
 
-        if(BelmontMovies != null && CineworldMovies != null)
+        if(CineworldMovies != null)
         {
             callback();
         }
     });
-
+/*
     belmontFetchMovies(function(movies) {
         BelmontMovies = movies;
         console.log("belmont");
@@ -28,12 +28,12 @@ var fetchAllMovies = function(callback)
             callback();
         }
     });
-
+*/
     cineworldFetchMovies(function(movies) {
         CineworldMovies = movies;
         console.log("cineworld");
 
-        if(VueMovies != null && BelmontMovies != null)
+        if(VueMovies != null)
         {
             callback();
         }
@@ -53,7 +53,7 @@ var mergeMovies = function()
         AllMovies[VueMovies[i].simpleName]["cineworld"] = null;
     }
 
-
+/*
     for(var i = 0 ; i < BelmontMovies.length; i++)
     {
         if(BelmontMovies[i].simpleName in AllMovies)
@@ -70,7 +70,7 @@ var mergeMovies = function()
             AllMovies[BelmontMovies[i].simpleName]["cineworld"] = null;
         }
     }
-
+*/
 
     for(var i = 0 ; i < CineworldMovies.length; i++)
     {
@@ -285,11 +285,11 @@ var setup = function (movies)
 var initWebApp = function(callback)
 {
     fetchAllMovies(function() {
-        belmontFetchProjections(BelmontMovies, function() {
+        //belmontFetchProjections(BelmontMovies, function() {
             mergeMovies();
             setup(AllMovies);
             callback();
-        });
+        //});
     });
 }
 
