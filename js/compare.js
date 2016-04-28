@@ -3,6 +3,10 @@ $(function(){
        $(document.body).on('click', '.search-detailed-movie-node' ,function(){
 	      	var m = $(this).attr('moviename');
 	      	var nv = AllMovies[m].vue;
+	        document.getElementById('cwDate').options.length = 0;
+	      	document.getElementById('cwTime').options.length = 0;
+	      	document.getElementById('vueDate').options.length = 0;
+	      	document.getElementById('vueTime').options.length = 0;
 	      	vueGetExtra(AllMovies[m].vue, function() { 
 	      		console.log(nv);
 	      		document.getElementById("movieTitle").innerHTML= nv.name;
