@@ -40,7 +40,6 @@
                 //takes in film name, classification, poster url and places them in appropriate tags
             } else {
                 $.each(response.films, function () {
-                    //html += '<p>' + this.title + ' (' + this.classification + ')</p>';
                     //shows one poster
                     html += $('img').attr("src", this.poster_url).load(function(){
                            $(this).width.height.appendTo('img');
@@ -49,6 +48,7 @@
             }
             //appends all DOM calls at once
             $('ol.film.list').append(html);
+
         }//end of function
     </script>
 </head>
@@ -85,20 +85,16 @@
     See cineworld api documentation jQuery widget page for how to add images-->
     <div class="featured-container">
         <div class="featured-node">
-            <p></p>
-            <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002945-lg.jpg" class="featured-img">
+            <img src="" class="featured-img">
         </div>
         <div class="featured-node">
-            <p></p>
-            <img id="poster" src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002984-lg.jpg" class="featured-img">
+            <img src="" class="featured-img">
         </div>
         <div class="featured-node">
-            <p></p>
-            <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002979-lg.jpg" class="featured-img">
+            <img src="" class="featured-img">
         </div>
         <div class="featured-node">
-            <p></p>
-            <img src="http://www1.cineworld.co.uk/xmedia-cw/repo/feats/posters/HO00002968-lg.jpg" class="featured-img">
+            <img src="" class="featured-img">
         </div>
     </div>
 
