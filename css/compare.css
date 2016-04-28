@@ -6,6 +6,11 @@ body{
     background-position: 0 52px;
 */
 }
+#cwDate, #cwTime, #vueDate, #vueTime{
+
+    color: black;
+
+}
 
 
 #compare {
