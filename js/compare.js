@@ -13,8 +13,8 @@ $(function(){
 	      		document.getElementById("desc").innerHTML= AllMovies[m].vue.extra.description;
 	      		document.getElementById("thumbnail").src= AllMovies[m].vue.extra.image;
 	      		rating(nv.ageClassification);
+	      	        getVueDateTime(m);
 	      		getCineworldDateTime(m);
-	      		getVueDateTime(m);
 	      	});    	
         });
 	      	
