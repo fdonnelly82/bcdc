@@ -2,32 +2,18 @@ $(function(){
 	console.log('Entered');
        $(document.body).on('click', '.search-detailed-movie-node' ,function(){
 	      	var m = $(this).attr('moviename');
-	      	var rc = AllMovies[m].cineworld.ageClassification;
-	      	var rv = AllMovies[m].vue.ageClassification;
-	      	var nc = AllMovies[m].cineworld.name;
-	      	var nv = AllMovies[m].vue.name;
-	      	var sc = AllMovies[m].cineworld.synopsis;
-	      	var sv = AllMovies[m].vue.synopsis;
-	      	setMovie(nc, sc, rc, nv, sv, rv);    	
+	      	var nv = AllMovies[m].vue;
+	      	vueGetExtra(AllMovies[m].vue, function() { 
+	      		console.log(nv);
+	      		document.getElementById("movieTitle").innerHTML= nv.name;
+	      		document.getElementById("desc").innerHTML= AllMovies[m].vue.extra.description;
+	      		document.getElementById("thumbnail").src= AllMovies[m].vue.extra.image;
+	      		rating(nv.ageClassification);
+	      	});    	
         });
 	      	
 });
 
- function setMovie(nc, sc, rc, nv, sv, rv){
-
- 	if(nc){
- 		document.getElementById("movieTitle").innerHTML= nc;
- 		document.getElementById("desc").innerHTML= sc;
- 		rating(rc);
- 	}
- 	/*else{
- 		document.getElementById("movieTitle").innerHTML= nv;
- 	    document.getElementById("desc").innerHTML= sv;
- 	    rating(rv);
- 	}*/
-
-
- } 
 
  function rating(r){
 
