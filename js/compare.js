@@ -9,6 +9,8 @@ $(function(){
 	      		document.getElementById("desc").innerHTML= AllMovies[m].vue.extra.description;
 	      		document.getElementById("thumbnail").src= AllMovies[m].vue.extra.image;
 	      		rating(nv.ageClassification);
+	      		getCineworldDateTime(m);
+	      		getVueDateTime(m);
 	      	});    	
         });
 	      	
@@ -56,3 +58,38 @@ $(function(){
 
  }
 
+function getCineworldDateTime(movie){
+
+	var selectDate = document.getElementById('cwDate');
+	var selectTime = document.getElementById('cwTime');
+    for(var i = 0; i < AllMovies[movie].vue.session.length; i++)
+    {
+          selectDate.options[selectDate.options.length] = new Option(AllMovies[movie].cineworld.session[i].date);
+
+            for(var j = 0; j < AllMovies[movie].vue.session[i].projection.length; j++)
+            {
+            	selectTime.options[selectTime.options.length] = new Option(AllMovies[movie].cineworld.session[i].projection[j].time);
+            }
+    }
+
+}
+
+function getVueDateTime(movie){
+
+	var selectDate = document.getElementById('vueDate');
+	var selectTime = document.getElementById('vueTime');
+    for(var i = 0; i < AllMovies[movie].vue.session.length; i++)
+    {
+          selectDate.options[selectDate.options.length] = new Option(AllMovies[movie].vue.session[i].date);
+
+            for(var j = 0; j < AllMovies[movie].vue.session[i].projection.length; j++)
+            {
+            	selectTime.options[selectTime.options.length] = new Option(AllMovies[movie].vue.session[i].projection[j].time);
+            }
+    }
+
+}
+
+
+
+  
