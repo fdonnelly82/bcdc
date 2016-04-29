@@ -1,3 +1,6 @@
+/* currently not used by the engine
+ */
+
 var getFeatured = function() {
     //when page loads, film name, certificate and poster loads with it
     $(document).ready(function(){

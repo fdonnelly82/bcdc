@@ -1,5 +1,14 @@
+/* Because of the Same Domain Policy
+ * YQL is used as a proxy.
+ */
+
+
 /*  default format: "xml"
  *  available formats: "xml", "json"
+ *
+ *  Sends a query through yql.
+ *  The format argument specifies how yql handles the request,
+ *  the returned format is always meant to be html.
  */
 var yqlQuery = function(query, callbackName, format_arg, logQuery)
 {
@@ -27,6 +36,10 @@ var yqlQuery = function(query, callbackName, format_arg, logQuery)
 
 /*  default format: "xml"
  *  available formats: "xml", "json"
+ *
+ *  Requests a website's content through yql.
+ *  The format argument specifies how yql handles the request,
+ *  the returned format is always meant to be html.
  */
 var yqlUrlQuery = function(url, callbackName, format, logQuery)
 {
@@ -37,6 +50,7 @@ var yqlUrlQuery = function(url, callbackName, format, logQuery)
 }
 
 
+// Takes yql xml response and returns html from requested url
 var yqlResponseToHTML = function(response)
 {
     var rawString = response.results[0].replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&');
@@ -46,6 +60,7 @@ var yqlResponseToHTML = function(response)
 }
 
 
+// Takes yql json response and returns html from requested url
 var yqlJsonResponseToHTML = function(response)
 {
     var rawString = response.query.results.result.result;

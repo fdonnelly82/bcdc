@@ -1,66 +1,73 @@
+// global variable holding the name of the movie
+// being currently compared
 var movieName = null;
 
-$(function(){
-	console.log('Entered');
-       $(document.body).on('click', '.search-detailed-movie-node' ,function(){
-           document.location = "#compare";
-
-           var fillExtra = function()
-           {
-               console.log(nv);
-               document.getElementById("movieTitle").innerHTML= nv.name;
-               document.getElementById("desc").innerHTML= nv.extra.description;
-               document.getElementById("thumbnail").src= nv.extra.image;
-               rating(nv.ageClassification);
-           }
-
-           var m = $(this).attr('moviename');
-           movieName = m;
-           var nv;
-           if(AllMovies[m].vue != null)
-           {
-               nv = AllMovies[m].vue;
-               vueGetExtra(nv, function() {
-                   fillExtra();
-               });
-           }
-           else if(AllMovies[m].cineworld != null)
-           {
-               nv = AllMovies[m].cineworld;
-               cineworldGetExtra(nv, function() {
-                   fillExtra();
-               });
-           }
-           else
-           {
-               nv = AllMovies[m].belmont;
-               fillExtra();
-           }
 
 
-	        document.getElementById('cineworldDate').options.length = 0;
-	      	document.getElementById('vueDate').options.length = 0;
+// function being called when a searched movie is clicked
+var movieClicked = function()
+{
+    document.location = "#compare";
 
+    // fill movie description and image
+    var fillExtra = function()
+    {
+        console.log(nv);
+        document.getElementById("movieTitle").innerHTML= nv.name;
+        document.getElementById("desc").innerHTML= nv.extra.description;
+        document.getElementById("thumbnail").src= nv.extra.image;
+        rating(nv.ageClassification);
+    }
 
-
-           if(AllMovies[m].vue != null)
-               getDate(m,'vue');
-           else
-               notAvailable('vue');
-
-           if(AllMovies[m].cineworld != null)
-               getDate(m, 'cineworld');
-           else
-               notAvailable('cineworld');
-
-           if(AllMovies[m].belmont != null)
-               getDate(m, 'belmont');
-           else
-               notAvailable('belmont');
+    var m = $(this).attr('moviename');
+    movieName = m;
+    var nv;
+    if(AllMovies[m].vue != null)
+    {
+        nv = AllMovies[m].vue;
+        // get extra information(image,description) and fill it
+        vueGetExtra(nv, function() {
+            fillExtra();
         });
-});
+    }
+    else if(AllMovies[m].cineworld != null)
+    {
+        nv = AllMovies[m].cineworld;
+        // get extra information(image,description) and fill it
+        cineworldGetExtra(nv, function() {
+            fillExtra();
+        });
+    }
+    else
+    {
+        nv = AllMovies[m].belmont;
+        fillExtra();
+    }
 
 
+    document.getElementById('cineworldDate').options.length = 0;
+    document.getElementById('vueDate').options.length = 0;
+
+
+
+    if(AllMovies[m].vue != null)
+        getDate(m,'vue');
+    else
+        notAvailable('vue');
+
+    if(AllMovies[m].cineworld != null)
+        getDate(m, 'cineworld');
+    else
+        notAvailable('cineworld');
+
+    if(AllMovies[m].belmont != null)
+        getDate(m, 'belmont');
+    else
+        notAvailable('belmont');
+};
+
+
+// display appropriate rating for a selected movie
  function rating(r){
 
  		if(r == "TBC"){
@@ -103,11 +110,14 @@ $(function(){
  }
 
 
+// fill movie dates selectbox
+// will fill relevant selectbox for passed cinemaName
 function getDate(movie, cinemaName)
 {
     if(cinemaName == "belmont")
         $("#belmont-book").css("display","none");
 
+    // hide prices since dates are being cleared
     $("#" + cinemaName + "-not-available").css("display","none");
     $("#" + cinemaName + "-prices").css("display","none");
     $("#" + cinemaName + "-available").css("display","block");
@@ -119,6 +129,7 @@ function getDate(movie, cinemaName)
     var option = new Option("Date");
     option.value = "header";
     selectDate.options[selectDate.options.length] = option;
+
 
     for(var i = 0; i < AllMovies[movie][cinemaName].session.length; i++)
     {
@@ -134,15 +145,21 @@ function getDate(movie, cinemaName)
     option.value = "header";
     selectTime.options[selectTime.options.length] = option;
 
+    // no date is selected, so called to hide the ticket table
     fillTicketTable(cinemaName);
 }
 
+
+// display movie as not available for "cinemaName" cinema
 function notAvailable(cinemaName)
 {
     $("#" + cinemaName + "-not-available").css("display","block");
     $("#" + cinemaName + "-available").css("display","none");
 }
 
+
+// fill times for a selected date
+// if date is call to clear times and hide prices
 function fillTimes(cinemaName)
 {
     if(cinemaName == "belmont")
@@ -176,8 +193,7 @@ function fillTimes(cinemaName)
 }
 
 
-// this should be really called after selecting a time
-// now im just always picking the first projection of second session (session[1].projection[0])
+// populates ticket information for passed "cinemaName" cinema
 var fillTicketTable = function(cinemaName)
 {
     $("#" + cinemaName +"-prices").css("display","none");
@@ -237,6 +253,10 @@ var fillTicketTable = function(cinemaName)
         fill();
 }
 
+
+// when called, calculates prices for available cinemas
+// if a cinema is not available, or has no date or time selected
+// the function simply returns without an error
 var comparePrices = function()
 {
     var vueCost = 999999;
@@ -290,7 +310,8 @@ var comparePrices = function()
 
 
 
-
+// either hides or shows movie description,
+// depending whether it's show or hidden
 var hideShowDescription = function()
 {
     if($("#movie-description").css("display") == "none")
@@ -306,6 +327,10 @@ var hideShowDescription = function()
 }
 
 
+
+// special function for the belmont cinema
+// shows or hides the link to booking depending
+// whether a date and time is selected or not
 var belmontShowBookingLink = function()
 {
     var selectedTimeOption = $('#belmontTime').find(":selected");

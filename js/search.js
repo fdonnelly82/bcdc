@@ -1,4 +1,3 @@
-var searchDetailedShown = false;
 
 $("#search-big-box").focus(function (event)
 {
@@ -13,18 +12,11 @@ $("#search-big-box").blur(function (event)
     }
 });
 
-//$("#search-big-box").keyup(function (event)
-$("#search-big-box").keyup(function (event)
-{
-    if($(this).val().length > 2 && searchDetailedShown == false)
-    {
-        searchDetailedShown = true;
-    }
-});
-
 
 var highlightedActorNode = null;
 
+
+// reset search results
 var resetMoviesResults = function()
 {
     if(highlightedActorNode != null)
@@ -40,6 +32,8 @@ var resetMoviesResults = function()
     $("#search-detailed-movies-info").html("");
 }
 
+
+// match movies and actors in response to typed text in search
 var matchMoviesAndActors = function (event, onlyMovies)
 {
     if(typeof onlyMovies !== "undefined")
@@ -94,6 +88,7 @@ var matchMoviesAndActors = function (event, onlyMovies)
 }
 
 
+// match movies by selected actor
 var matchMoviesByActor = function(event)
 {
     if(($(event.target)).is(highlightedActorNode))

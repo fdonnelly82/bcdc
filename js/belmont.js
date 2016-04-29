@@ -1,3 +1,6 @@
+/* Function to pull movies from the Belmont cinema's website
+ * Look at vueFetchMovies in vue.js to see a structure created by this function.
+ */
 var belmontFetchMovies = function(callback)
 {
     belmontFetchMoviesCallback= function(response)
@@ -7,6 +10,7 @@ var belmontFetchMovies = function(callback)
 
         var movie = [];
 
+        // For every movie found scrape all relevant data
         for(var i = 0; i < movie_li.length; i++)
         {
             var a = $(movie_li[i]).find('a');
@@ -30,6 +34,7 @@ var belmontFetchMovies = function(callback)
             var ageClassification = $(runningTimeAgeClassification[3]).text().split("Rated ")[1];
 
 
+            // save data into an object
             movie.push({
                 name: name,
                 simpleName: toSimpleName(name),
@@ -52,13 +57,24 @@ var belmontFetchMovies = function(callback)
 }
 
 
+/* Because on a general page session and projection times are not visible,
+ * a special function is created for belmont to get dates and times for the movies.
+ * The function sends two ajax request because to get actual dates and times,
+ * two pages have to be accessed, the first one leading to the second.
+ *
+ * The first ajax function also fills the extra filed for every
+ * movie hence there's no belmontGetExtra() function.
+ */
 var belmontFetchProjections = function(movie,callback)
 {
     var requestsSent = movie.length, requestsProcessed = 0;
 
+    // this array is used to associate request links with names
+    // keeping names between requests would be not possible otherwise
+    // since yql doesn't allow to pass parameters
     var urlToMovieNameDictionary = [];
 
-    // find url with all movie projections
+    // find url with all movie projections (dates),
     belmontFetchProjectionCallbackStepOne = function(response)
     {
         var html = yqlJsonResponseToHTML(response);

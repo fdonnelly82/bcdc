@@ -1,3 +1,6 @@
+/* Function to pull movies from the Belmont cinema's website
+ * Look at vueFetchMovies in vue.js to see a structure created by this function.
+ */
 var cineworldFetchMovies = function(callback)
 {
     cineworldFetchMoviesCallback = function(response)
@@ -108,7 +111,7 @@ var cineworldFetchMovies = function(callback)
 }
 
 
-
+// Fills the passed projection's "pricing" field with ticket prices
 var cineworldGetProjectionPricing = function(projection, callback)
 {
     cineworldProjectionPricingCallback = function(response)
@@ -154,7 +157,8 @@ var cineworldGetProjectionPricing = function(projection, callback)
 }
 
 
-
+// Fills the movie's "extra" field with extra description and image data
+// which are not available on the general page
 var cineworldGetExtra = function(movie, callback)
 {
     cineworldExtraCallback = function(response)

@@ -540,18 +540,9 @@
 <script src="js/search.js"></script>
 <script>
     $(document).ready(function () {
-
-        initWebApp(function(){
-            $(".search-detailed-movie-node").click(movieClick);
+        initWebApp(function() {
+            $(document.body).on('click', '.search-detailed-movie-node' , movieClicked);
         });
-
-        /*
-         cineworldFetchMovies(function(movies) {
-         cineworldGetExtra(movies[0], function (movie) {
-         console.log(movie);
-         });
-         });
-         */
     });
 
 

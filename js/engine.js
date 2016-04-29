@@ -6,7 +6,10 @@ var AllMovies = [];
 var AllActors = [];
 
 
-
+// fetches movies from all three cinemas
+// runs "callback" once the movies from the three cinemas
+// have been pulled.
+// Populates VueMovies, BelmontMovies and CineworldMovies
 var fetchAllMovies = function(callback)
 {
     vueFetchMovies(function(movies) {
@@ -38,6 +41,11 @@ var fetchAllMovies = function(callback)
 }
 
 
+// Merges movies from the three cinemas
+// Populates AllMovies
+// Movies information can be accessed by using
+// AllMovies[movieName].vue, AllMovies[movieName].belmont, AllMovies[movieName].cineworld
+// The objects are null for cinemas where the "movieName" is not available
 var mergeMovies = function()
 {
     for (var i = 0; i < VueMovies.length; i++)
@@ -90,6 +98,8 @@ var mergeMovies = function()
 }
 
 
+
+// Builds the actors container in the left column
 var setupActorsContainer = function(event) {
     var actorsContainerOffsetTop = $("#search-detailed-actors").offset().top;
     var availableHeight = $(window).height() - actorsContainerOffsetTop - 20 /* make margin on the bottom*/;
@@ -100,7 +110,7 @@ var setupActorsContainer = function(event) {
 }
 
 
-
+// Populates actors in the actors column
 var populateActors = function() {
     var actorsSorted = [];
     for(var key in AllActors) {
@@ -123,6 +133,7 @@ var populateActors = function() {
 }
 
 
+// Populates movies for searching
 var populateSearchMovies = function (movies)
 {
     for (var i = 0; i < movies.length; i++) {
@@ -148,7 +159,9 @@ var populateSearchMovies = function (movies)
 }
 
 
-
+// Fetches actors, attempting to get actors for 10 movies
+// every 2 seconds in turn, because themoviedb API
+// has a limit for 20 requests at once.
 var fetchAllActors = function(movies)
 {
     var delay = 0;
@@ -162,6 +175,8 @@ var fetchAllActors = function(movies)
         delay += 2000;
     }
 }
+
+
 
 var actorsRequested = 0;
 var actorsCompleted = 0;
@@ -232,6 +247,7 @@ var fetchActorsSubset = function(movies, startIndex, endIndex, callback)
 }
 
 
+// Setups the page
 var setup = function (movies)
 {
     populateSearchMovies(movies);
@@ -262,6 +278,7 @@ var setup = function (movies)
 
 // note: actors are not ready when the callback is run,
 // only movies are ready
+// inits and setups the web app, fetches all necessary data
 var initWebApp = function(callback)
 {
     fetchAllMovies(function()
@@ -295,65 +312,6 @@ var initWebApp = function(callback)
 
 
 
-function similar_text(first, second, percent) {
-    //  discuss at: http://phpjs.org/functions/similar_text/
-    // original by: Rafał Kukawski (http://blog.kukawski.pl)
-    // bugfixed by: Chris McMacken
-    // bugfixed by: Jarkko Rantavuori original by findings in stackoverflow (http://stackoverflow.com/questions/14136349/how-does-similar-text-work)
-    // improved by: Markus Padourek (taken from http://www.kevinhq.com/2012/06/php-similartext-function-in-javascript_16.html)
-    //   example 1: similar_text('Hello World!', 'Hello phpjs!');
-    //   returns 1: 7
-    //   example 2: similar_text('Hello World!', null);
-    //   returns 2: 0
-
-    if (first === null || second === null || typeof first === 'undefined' || typeof second === 'undefined') {
-        return 0;
-    }
-
-    first += '';
-    second += '';
-
-    var pos1 = 0,
-        pos2 = 0,
-        max = 0,
-        firstLength = first.length,
-        secondLength = second.length,
-        p, q, l, sum;
-
-    max = 0;
-
-    for (p = 0; p < firstLength; p++) {
-        for (q = 0; q < secondLength; q++) {
-            for (l = 0;
-                 (p + l < firstLength) && (q + l < secondLength) && (first.charAt(p + l) === second.charAt(q + l)); l++)
-                ;
-            if (l > max) {
-                max = l;
-                pos1 = p;
-                pos2 = q;
-            }
-        }
-    }
-
-    sum = max;
-
-    if (sum) {
-        if (pos1 && pos2) {
-            sum += this.similar_text(first.substr(0, pos1), second.substr(0, pos2));
-        }
-
-        if ((pos1 + max < firstLength) && (pos2 + max < secondLength)) {
-            sum += this.similar_text(first.substr(pos1 + max, firstLength - pos1 - max), second.substr(pos2 + max,
-                secondLength - pos2 - max));
-        }
-    }
-
-    if (!percent) {
-        return sum;
-    } else {
-        return (sum * 200) / (firstLength + secondLength);
-    }
-}
 
 
 

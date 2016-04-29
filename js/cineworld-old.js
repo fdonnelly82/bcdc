@@ -1,3 +1,9 @@
+/*
+ *  API to pull cineworld data from an external service: https://film.list.co.uk/
+ *  Not being used in the app.
+ */
+
+
 var cineworldOldFetchMovies = function(callback)
 {
     cineworldOldFetchMoviesCallback = function(response)

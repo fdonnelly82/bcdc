@@ -168,6 +168,7 @@ var vueFetchMovies = function(callback)
 }
 
 
+// Fills the passed projection's "pricing" field with ticket prices
 var vueGetProjectionPricing = function(projection, callback)
 {
     vueProjectionPricingCallback = function(response)
@@ -233,6 +234,8 @@ var vueGetProjectionPricing = function(projection, callback)
 }
 
 
+// Fills the movie's "extra" field with extra description and image data
+// which are not available on the general page
 var vueGetExtra = function(movie, callback)
 {
     vueExtraCallback = function(response)
