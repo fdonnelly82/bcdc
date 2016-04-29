@@ -93,177 +93,185 @@
     <!-- COMPARE -->
 
     <section id="compare">
-        <div id = "compareMovies">
-            <div id = "bookingInfo">
-                <div id = "timedateInfo">
-                    <div id= "date">Date: <input id = "dPick" type="date"></div>
-                    Time: <input id = "time" type="time">
-                </div>
-                <div id = "ticketDetails">
-                    Type:
-                    <select id = "type">
-                        <option value="1">Student</option>
-                        <option value="2">Adult</option>
-                        <option value="3">Senior</option>
-                        <option value="4">4</option>
-                    </select>
-                    Vip: <input type = "checkbox" id="vip">
-                    Quantity: <input id = "quantity" type = "text">
+        <div id = "videoHolder">
+            <div id="hide-show-movie-info" onclick="hideShowDescription()">Show Description &#65516;</div>
+            <div id="movie-description">
+                <div style="text-align: center;"><img id = "thumbnail" src ="images/bvs.jpg"></div>
+                <div>
+                    <div>
+                        <h1 id = "movieTitle">Batman vs Superman</h1><img id = "rating" src="images/12A.png" width ="10%" height ="10%"><br />
+                        <div class="clearfix"></div>
+                    </div>
+                    <div id = "desc">
+                        It's been nearly two years since Superman's (Henry Cavill) colossal battle with Zod (Michael Shannon) devastated the city of Metropolis. The loss of life and collateral damage left many feeling angry and helpless, including crime-fighting billionaire Bruce Wayne (Ben Affleck). Convinced that Superman is now a threat to humanity, Batman embarks on a personal vendetta to end his reign on Earth, while the conniving Lex Luthor (Jesse Eisenberg) launches his own crusade against the Man of Steel.
+                    </div>
                 </div>
             </div>
-            <hr>
-
-            <div id = "compare1">
-                <div id = "photo1">
+        </div>
+        <div id = "compareMovies">
+            <div id = "compare1" class="compare-column">
+                <div id = "photo1" class="cinema-logo">
                     <img src="images/vue.jpg">
                 </div>
-                <div id="vue-prices">
-                    <div>Adult (£<span id="vue-cost-adult"></span>):<input id="vue-quantity-adult" value="0" type="text" style="width: 30px; color: black;"/></div>
-                    <div>Child (£<span id="vue-cost-child"></span>):<input id="vue-quantity-child" value="0" type="text" style="width: 30px; color: black;" /></div>
-                    <div>Senior (£<span id="vue-cost-senior"></span>):<input id="vue-quantity-senior" value="0" type="text" style="width: 30px; color: black;" /></div>
-                    <div>Student (£<span id="vue-cost-student"></span>):<input id="vue-quantity-student" value="0" type="text" style="width: 30px; color: black;" /></div>
-                    <div>Teen (£<span id="vue-cost-teen"></span>):<input id="vue-quantity-teen" value="0" type="text" style="width: 30px; color: black;" /></div>
-                    <div>All Inclusive Family (£<span id="vue-cost-allInclusiveFamily"></span>):<input id="vue-quantity-allInclusiveFamily" value="0" type="text" style="width: 30px; color: black;" /></div>
-                    <div>Family X 4 (£<span id="vue-cost-familyX4"></span>):<input id="vue-quantity-familyX4" value="0" type="text" style="width: 30px; color: black;" /></div>
-                    <select id="vueDate"></select> 
-                    <select id="vueTime"></select>
+                <div id="vue-not-available" class="not-available">
+                    <img src="images/movie-logo.png">
+                    <div>Movie not available</div>
                 </div>
-                <h2 id="vue-overall-cost"></h2>
-                <a id="vue-book" target="_blank"></a>
+
+                <div id="vue-available">
+                    <div class="compare-date-time">
+                        <div class="form-group select-custom select-date" onchange="fillTimes('vue')">
+                            <select class="form-control" id="vueDate">
+                                <option>Date</option>
+                            </select>
+                        </div>
+                        <div class="form-group select-custom select-time" onchange="fillTicketTable('vue')">
+                            <select class="form-control" id="vueTime">
+                                <option>Time</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="vue-loading-ticket-table" class="loading-ticket-table">
+                        <img src="ajax-loader(2).gif">
+                    </div>
+                    <div id="vue-prices">
+                        <table class="ticket-table">
+                            <thead>
+                            <tr class="ticket-table-header">
+                                <th>Quantity</th>
+                                <th>Ticket type</th>
+                                <th>Cost</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><input class="ticket-quantity" id="vue-quantity-adult" value="0" type="text" style="width: 30px; color: black;"/></td>
+                                <td>Adult</td>
+                                <td id="vue-cost-adult">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td><input class="ticket-quantity" id="vue-quantity-child" value="0" type="text" style="width: 30px; color: black;"/></td>
+                                <td>Child</td>
+                                <td id="vue-cost-child"></td>
+                            </tr>
+                            <tr>
+                                <td><input class="ticket-quantity" id="vue-quantity-senior" value="0" type="text" style="width: 30px; color: black;"/></td>
+                                <td>Senior</td>
+                                <td id="vue-cost-senior"></td>
+                            </tr>
+                            <tr>
+                                <td><input class="ticket-quantity" id="vue-quantity-student" value="0" type="text" style="width: 30px; color: black;"/></td>
+                                <td>Student</td>
+                                <td id="vue-cost-student"></td>
+                            </tr>
+                            <tr>
+                                <td><input class="ticket-quantity" class="ticket-quantity" id="vue-quantity-teen" value="0" type="text" style="width: 30px; color: black;"/></td>
+                                <td>Teen</td>
+                                <td id="vue-cost-teen"></td>
+                            </tr>
+                            <tr>
+                                <td><input class="ticket-quantity" id="vue-quantity-allInclusiveFamily" value="0" type="text" style="width: 30px; color: black;"/></td>
+                                <td>All Inclusive Family</td>
+                                <td id="vue-cost-allInclusiveFamily"></td>
+                            </tr>
+                            <tr>
+                                <td><input class="ticket-quantity" id="vue-quantity-familyX4" value="0" type="text" style="width: 30px; color: black;"/></td>
+                                <td>Family X 4</td>
+                                <td id="vue-cost-familyX4"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="vue-cinema-summary" class="cinema-summary">
+                        <h2 id="vue-overall-cost"></h2>
+                        <a id="vue-book" target="_blank"></a>
+                    </div>
+                </div>
             </div>
-            <div id = "compare2">
-                <div id = "photo2">
+
+            <div id = "compare3"  class="compare-column">
+                <div id = "photo3" class="cinema-logo">
+                    <img src="images/belmont2.jpeg">
+                </div>
+                <div class="not-available">
+                    <img src="images/movie-logo.png">
+                    <div>Movie not available</div>
+                </div>
+            </div>
+            <div id = "compare2" class="compare-column">
+                <div id = "photo2" class="cinema-logo">
                     <img src="images/Cineworld.png">
                 </div>
-                <div id="cineworld-prices">
-                    <div>Adult (£<span id="cineworld-cost-adult"></span>):<input id="cineworld-quantity-adult" value="0" type="text" style="width: 30px; color: black;"/></div>
-                    <div>Child (£<span id="cineworld-cost-child"></span>):<input id="cineworld-quantity-child" value="0" type="text" style="width: 30px; color: black;" /></div>
-                    <div>Senior (£<span id="cineworld-cost-senior"></span>):<input id="cineworld-quantity-senior" value="0" type="text" style="width: 30px; color: black;" /></div>
-                    <div>Student (£<span id="cineworld-cost-student"></span>):<input id="cineworld-quantity-student" value="0" type="text" style="width: 30px; color: black;" /></div>
-                    <div>Family (£<span id="cineworld-cost-family"></span>):<input id="cineworld-quantity-family" value="0" type="text" style="width: 30px; color: black;" /></div>
-                    <select id="cwDate"></select> 
-                    <select id="cwTime"></select>
+                <div id="cineworld-not-available" class="not-available">
+                    <img src="images/movie-logo.png">
+                    <div>Movie not available</div>
                 </div>
-                <h2 id="cineworld-overall-cost"></h2>
-                <a id="cineworld-book" target="_blank"></a>
-            </div>
-
-            <script>
-                var vueProjection;
-                var cineworldProjection;
-                var movieName;
-
-                var movieClick = function()
-                {
-                    document.location = "#compare";
-                    var name = $(this).attr("moviename");
-                    fillPrices(name);
-                }
-
-                // this should be really called after selecting a time
-                // now im just always picking the first projection of second session (session[1].projection[0])
-                var fillPrices = function(name) {
-                    movieName = name;
-
-                    $("#vue-prices").css("display","none");
-                    $("#cineworld-prices").css("display","none");
-                    $("#vue-overall-cost").text("");
-                    $("#cineworld-overall-cost").text("");
-
-                    if (AllMovies[name].vue != null) {
-                        vueGetProjectionPricing(AllMovies[name].vue.session[1].projection[0], function (projection) {
-                            vueProjection = projection;
-
-                            if(projection == null)
-                                alert("Vue: Projection time already passed. Error.")
-
-                            for (type in projection.pricing) {
-                                console.log(type);
-                                $("#vue-cost-" + type).text(projection.pricing[type].standard)
-
-                                $("#vue-prices").css("display","block");
-                                $("#vue-book").text("Book now");
-                                $("#vue-book").attr("href", projection.url);
-                            }
-                        });
-                    }
-                    else {
-                        $("#vue-book").text("");
-                        $("#vue-overall-cost").text("Not available");
-                    }
-
-
-                    if (AllMovies[name].cineworld != null) {
-                        console.log(AllMovies[name].cineworld);
-
-                        cineworldGetProjectionPricing(AllMovies[name].cineworld.session[1].projection[0], function (projection) {
-                            cineworldProjection = projection;
-
-                            if(typeof(projection) =="undefined")
-                                alert("Cineworld: Projection time already passed. Error.")
-
-                            for (type in projection.pricing) {
-                                $("#cineworld-cost-" + type).text(projection.pricing[type].standard)
-
-                                $("#cineworld-prices").css("display","block");
-                                $("#cineworld-book").text("Book now");
-                                $("#cineworld-book").attr("href", projection.url);
-                            }
-                        });
-                    }
-                    else {
-                        $("#cineworld-book").text("");
-                        $("#cineworld-overall-cost").text("Not available");
-                    }
-
-                }
-
-                var comparePrices = function()
-                {
-                    var vueCost = 999999;
-                    var cineworldCost = 999999;
-                    if(AllMovies[movieName].cineworld != null)
-                    {
-                        cineworldCost = 0;
-                        for (type in cineworldProjection.pricing) {
-                            cineworldCost += parseInt($("#cineworld-quantity-" + type).val()) * cineworldProjection.pricing[type].standard;
-                        }
-
-                        $("#cineworld-overall-cost").text("£" + cineworldCost.toFixed(2));
-                    }
-
-                    if(AllMovies[movieName].vue != null)
-                    {
-                        vueCost = 0;
-                        for (type in vueProjection.pricing) {
-                            vueCost += parseInt($("#vue-quantity-" + type).val()) * vueProjection.pricing[type].standard;
-                        }
-
-                        $("#vue-overall-cost").text("£" + vueCost.toFixed(2));
-                    }
-                }
-
-            </script>
-
-            <div id = "compare3">
-
-                <div id = "photo3">
-                    <img src="images/Belmont.jpg">
+                <div id="cineworld-available">
+                    <div class="compare-date-time">
+                        <div class="form-group select-custom select-date" onchange="fillTimes('cineworld')">
+                            <select class="form-control" id="cineworldDate">
+                                <option>Date</option>
+                            </select>
+                        </div>
+                        <div class="form-group select-custom select-time" onchange="fillTicketTable('cineworld')">
+                            <select class="form-control" id="cineworldTime">
+                                <option>Time</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="cineworld-loading-ticket-table" class="loading-ticket-table">
+                        <img src="ajax-loader(2).gif">
+                    </div>
+                    <div id="cineworld-prices">
+                        <table class="ticket-table">
+                            <thead>
+                            <tr class="ticket-table-header">
+                                <th>Quantity</th>
+                                <th>Ticket type</th>
+                                <th>Cost</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="ticket-table-tr-blank">
+                                <td><input class="ticket-quantity" value="0" type="text" style="width: 30px; color: black; visibility: hidden;"/></td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td><input class="ticket-quantity" id="cineworld-quantity-adult" value="0" type="text" style="width: 30px; color: black;"/></td>
+                                <td>Adult</td>
+                                <td id="cineworld-cost-adult">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td><input class="ticket-quantity" id="cineworld-quantity-child" value="0" type="text" style="width: 30px; color: black;"/></td>
+                                <td>Child</td>
+                                <td id="cineworld-cost-child"></td>
+                            </tr>
+                            <tr>
+                                <td><input class="ticket-quantity" id="cineworld-quantity-senior" value="0" type="text" style="width: 30px; color: black;"/></td>
+                                <td>Senior</td>
+                                <td id="cineworld-cost-senior"></td>
+                            </tr>
+                            <tr>
+                                <td><input class="ticket-quantity" id="cineworld-quantity-student" value="0" type="text" style="width: 30px; color: black;"/></td>
+                                <td>Student</td>
+                                <td id="cineworld-cost-student"></td>
+                            </tr>
+                            <tr>
+                                <td><input class="ticket-quantity" class="ticket-quantity" id="cineworld-quantity-family" value="0" type="text" style="width: 30px; color: black;"/></td>
+                                <td>Family</td>
+                                <td id="cineworld-cost-family"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="cineworld-cinema-summary" class="cinema-summary">
+                        <h2 id="cineworld-overall-cost"></h2>
+                        <a id="cineworld-book" target="_blank"></a>
+                    </div>
                 </div>
-                <h1>N/A</h1>
-                <input id = "timeComp" type="time">
             </div>
-            <div><button onclick="comparePrices()" style="color: black;">compare!</button></div>
-        </div>
-
-
-        <div id = "videoHolder">
-            <img id = "thumbnail" src ="images/bvs.jpg">
-            <h1 id = "movieTitle">Batman vs Superman</h1><img id = "rating" src="images/12A.png" width ="10%" height ="10%"><br />
-            <div id = "movieInfo">
-                <p id = "desc"> It's been nearly two years since Superman's (Henry Cavill) colossal battle with Zod (Michael Shannon) devastated the city of Metropolis. The loss of life and collateral damage left many feeling angry and helpless, including crime-fighting billionaire Bruce Wayne (Ben Affleck). Convinced that Superman is now a threat to humanity, Batman embarks on a personal vendetta to end his reign on Earth, while the conniving Lex Luthor (Jesse Eisenberg) launches his own crusade against the Man of Steel.</p>
-            </div>
-        </div>
+            <div class="calculate"><button type="button" onclick="comparePrices()" class="btn">Calculate</button></div>
         </div>
     </section>
 

@@ -124,23 +124,28 @@ var cineworldGetProjectionPricing = function(projection, callback)
             price.push($(tickets[i]).children().eq(2).text().replace("£",""));
         }
 
-        projection.pricing = {
-            adult : {
-                standard : price[0]
-            },
-            child : {
-                standard : price[1]
-            },
-            senior : {
-                standard : price[2]
-            },
-            student : {
-                standard : price[3],
-            },
-            family : {
-                standard : price[4],
+        // if true projection time has already passed, leave pricing = null
+        if(price[0] != "")
+        {
+            projection.pricing = {
+                adult : {
+                    standard : price[0]
+                },
+                child : {
+                    standard : price[1]
+                },
+                senior : {
+                    standard : price[2]
+                },
+                student : {
+                    standard : price[3],
+                },
+                family : {
+                    standard : price[4],
+                }
             }
         }
+
 
         callback(projection);
     }

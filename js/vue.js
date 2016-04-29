@@ -100,6 +100,12 @@ var vueFetchMovies = function(callback)
                 var day = date[1].replace("st","").replace("nd","").replace("rd","").replace("th","");
                 var movieMonth = month.indexOf(date[2]) + 1;
 
+                if(day.length == 1)
+                    day = "0" + day;
+
+                if(movieMonth.toString().length == 1)
+                    movieMonth = "0" + movieMonth;
+
                 var session = {
                     date : day + "/" + movieMonth + "/2016",
                     projection : []

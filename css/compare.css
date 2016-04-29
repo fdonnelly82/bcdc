@@ -15,10 +15,11 @@ body{
 
 #compare {
     margin-top: 100px;
-    background-image: url('../images/batmansupermanbg.jpg');
+    background-image: url('../images/batmansupermanbg2.jpg');
     background-size: 100% 100%;
     padding-top: 50px;
     background-position: 0 50px;
+    min-height: 1500px;
 }
 
 
@@ -35,10 +36,11 @@ body{
 #videoHolder{
 
     margin: auto;
+    margin-bottom: 0;
     width: 50%;
-    margin-top: 2%;
-    margin-bottom: 5%;
     padding: 10px;
+    padding-top: 0;
+    padding-bottom: 0;
     background: url(../images/background.jpg);
     border-radius: 25px;
     color: white;
@@ -66,12 +68,11 @@ body{
 
 width: 5%;
 height: 5%;
-position: relative;
 margin-top: 2%;
 margin-left: 1%;
 border-style: solid ;
 padding-bottom: 0;
-
+position: relative;
 }
 
 #moviePhoto h1{
@@ -84,7 +85,7 @@ padding-top: 30px;
 
 padding-top: 2.5%;
 padding-left: 0.5%;
-
+margin-bottom: 1vh;
 }
 
 
@@ -154,40 +155,140 @@ padding-left: 0.5%;
 }
 #compareMovies{
     margin: auto;
+    margin-top: 0;
     width: 50%;
-    margin-top: 11%;
-    padding: 0.2%;
     background: url(../images/background.jpg);
     border-radius: 25px;
     color: white;
+    height: 85vh;
+}
+
+
+#hide-show-movie-info
+{
+    text-align: center;
+    padding: 5px;
+    border-radius: 25px;
+    font-size: 12px;
+    height: 4vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    cursor: pointer;
+    color: gray;
+}
+
+#movie-description
+{
+    display: none;
+}
+
+
+.compare-column
+{
+    margin-left: 1%;
+    margin-right: 0;
+    width: 32%;
+    border-radius: 25px;
+    background-color: black;
+    height: auto;
+    float: left;
+    color: white;
+    margin-top: 1vh;
+    height: 75vh;
+    padding: 2px;
+    position: relative;
+}
+
+
+
+.compare-column a:visited
+{
+    color: #23527c !important;
+}
+
+.ticket-table
+{
+    width: 100%;
+}
+
+.ticket-table tr
+{
+    text-align: center;
+}
+
+.ticket-table th
+{
+    text-align: center;
+}
+
+.ticket-table-header
+{
+    border-bottom: 1px solid white;
+}
+
+.ticket-quantity
+{
+    text-align: center;
+    margin-top: 4px;
+    margin-bottom: 4px;
+
+    border: 0;
+}
+
+.select-custom
+{
+    display: inline-block;
+}
+
+.select-date
+{
+    width: 56% !important;
+    margin: 0;
+    margin-left: 2px;
+
+}
+
+.select-time
+{
+    width: 40% !important;
+    margin: 0;
 }
 
 #compare1{
-    background-color: black;
-    width: 25%;
-    height: auto;
-    margin-left: 5%;
-    margin-top: 5%;
-    display:inline-block;
-    margin-bottom: 5%;
-    padding-bottom: 10%;
-    border-radius: 25px;
-    color: white;
+
 }
+
 #compare1 h1{
 
         text-align: center;
 
 }
-#photo1{
 
+.compare-date-time
+{
+    margin-bottom: 3vh;
+}
+
+.cinema-logo
+{
     background-color: white;
-    width: 50%;
-    height: 90px;
+    height: 8vh;
     margin: auto;
-    margin-top: 20%;
+    margin-top: 1vh;
+    margin-bottom: 3vh;
+}
 
+.cinema-summary
+{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 2vh;
+}
 
+#photo1{
+    width: 60%;
 }
 #photo1 img{
 
@@ -196,17 +297,6 @@ padding-left: 0.5%;
 
 }
 #compare2{
-    background-color: black;
-    width: 25%;
-    height: auto;
-    margin-left: 7.5%;
-    margin-top: 5%;
-    display:inline-block;
-    margin-bottom: 5%;
-    padding-bottom: 10%;
-    border-radius: 25px;
-    color: white;
-
 
 }
 #compare2 h1{
@@ -215,12 +305,7 @@ padding-left: 0.5%;
 }
 #photo2{
 
-    background-color: white; 
-    width: 70%;
-    height: 90px;
-    margin: auto;
-    margin-top: 20%;
-
+    width: 80%;
 }
 #photo2 img{
 
@@ -229,18 +314,6 @@ padding-left: 0.5%;
 
 }
 #compare3{
-    background-color: black;
-    width: 25%;
-    height: auto;
-    margin-left: 7.5%;
-    margin-top: 5%;
-    display:inline-block;
-    margin-bottom: 5%;
-    padding-bottom: 10%;
-    border-radius: 25px;
-    color: white;
-
-
 
 }
 #compare3 h1{
@@ -249,15 +322,10 @@ padding-left: 0.5%;
     
 }
 #photo3{
-
-    background-color: white;
-    width: 100%;
-    height: 90px;
-    margin: auto;
-    margin-top: 20%;
-
-
+    width: 40%;
 }
+
+
 #photo3 img{
 
     width: 100%;
@@ -277,10 +345,80 @@ padding-left: 0.5%;
     border: 1px solid blue;
 }
 
-#thumbnail{
-
-    width: 100%;
-    height: 480px;
+#thumbnail
+{
+    height: 350px;
     border-radius: 25px;
+    margin: auto;
+}
 
+
+
+.not-available
+{
+    color: #695c56;
+    text-align: center;
+}
+
+.not-available img
+{
+    margin-top: 15vh;
+    width: 80%;
+    height: 20vh;
+}
+
+.not-available div
+{
+    margin-top: 3vh;
+    font-size: 18px;
+}
+
+#vue-available
+{
+    display: none;
+}
+
+#cineworld-available
+{
+    display: none;
+}
+
+#vue-prices
+{
+    display: none;
+}
+
+#cineworld-prices
+{
+    display: none;
+}
+
+
+.loading-ticket-table
+{
+    margin-top: 15vh;
+    display: none;
+    text-align: center;
+}
+
+
+.calculate
+{
+    text-align: center;
+}
+
+
+.calculate button
+{
+    margin-top: 1.5vh;
+    width: 70%;
+    color: white;
+    background-color: black;
+}
+
+.calculate button:hover
+{
+    border: 1px solid white;
+    color: white;
+    background-color: black;
 }
