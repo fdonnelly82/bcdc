@@ -11,7 +11,6 @@ var fetchAllMovies = function(callback)
 {
     vueFetchMovies(function(movies) {
         VueMovies = movies;
-        console.log("vue");
 
         if(CineworldMovies != null && BelmontMovies != null)
         {
@@ -30,7 +29,6 @@ var fetchAllMovies = function(callback)
 
     cineworldFetchMovies(function(movies) {
         CineworldMovies = movies;
-        console.log("cineworld");
 
         if(VueMovies != null && BelmontMovies != null)
         {
