@@ -13,27 +13,26 @@ var fetchAllMovies = function(callback)
         VueMovies = movies;
         console.log("vue");
 
-        if(CineworldMovies != null)
+        if(CineworldMovies != null && BelmontMovies != null)
         {
             callback();
         }
     });
-/*
+
     belmontFetchMovies(function(movies) {
         BelmontMovies = movies;
-        console.log("belmont");
 
         if(VueMovies != null && CineworldMovies != null)
         {
             callback();
         }
     });
-*/
+
     cineworldFetchMovies(function(movies) {
         CineworldMovies = movies;
         console.log("cineworld");
 
-        if(VueMovies != null)
+        if(VueMovies != null && BelmontMovies != null)
         {
             callback();
         }
@@ -53,7 +52,7 @@ var mergeMovies = function()
         AllMovies[VueMovies[i].simpleName]["cineworld"] = null;
     }
 
-/*
+
     for(var i = 0 ; i < BelmontMovies.length; i++)
     {
         if(BelmontMovies[i].simpleName in AllMovies)
@@ -69,8 +68,10 @@ var mergeMovies = function()
             AllMovies[BelmontMovies[i].simpleName]["belmont"] = BelmontMovies[i];
             AllMovies[BelmontMovies[i].simpleName]["cineworld"] = null;
         }
+
+        console.log(BelmontMovies[i].url)
     }
-*/
+
 
     for(var i = 0 ; i < CineworldMovies.length; i++)
     {
@@ -126,25 +127,6 @@ var populateActors = function() {
 
 var populateSearchMovies = function (movies)
 {
-    // do not include:
-    // - opera/theater performances ("live:")
-    // - marathons ("marathon")
-    // - combined projections ("double bill")
-    //  (TODO: make a special section for these later?)
-    /*
-     var parsedMovie = [];
-     for (var i = 0; i < movie.length; i++) {
-     if (movie[i].name.indexOf("Live:") != -1 || movie[i].name.indexOf("Marathon") != -1 || movie[i].name.indexOf("Double Bill") != -1) {
-     continue;
-     }
-     else {
-     parsedMovie.push(movie[i]);
-     }
-     }
-
-     movie = parsedMovie;
-     */
-
     for (var i = 0; i < movies.length; i++) {
         var movie;
         if(movies[i]["vue"] != null)
@@ -284,12 +266,32 @@ var setup = function (movies)
 // only movies are ready
 var initWebApp = function(callback)
 {
-    fetchAllMovies(function() {
-        //belmontFetchProjections(BelmontMovies, function() {
+    fetchAllMovies(function()
+    {
+        belmontFetchProjections(BelmontMovies, function()
+        {
+            // many movies on the belmont page are shown but you can't book them
+            // remove the movies that can't be booked
+            var length = BelmontMovies.length;
+
+            for(var i = 0; i < length; i++)
+            {
+                if(BelmontMovies[i].session.length == 0)
+                {
+                    console.log("belmont: " + BelmontMovies[i].simpleName);
+                    delete BelmontMovies[BelmontMovies[i].simpleName];
+                    BelmontMovies.splice(i,1);
+                    i--;
+                    length--;
+                }
+
+                console.log("LOOp");
+            }
+
             mergeMovies();
             setup(AllMovies);
             callback();
-        //});
+        });
     });
 }
 

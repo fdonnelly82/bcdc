@@ -32,7 +32,11 @@ $(function(){
                });
            }
            else
+           {
                nv = AllMovies[m].belmont;
+               fillExtra();
+           }
+
 
 	        document.getElementById('cineworldDate').options.length = 0;
 	      	document.getElementById('vueDate').options.length = 0;
@@ -48,6 +52,11 @@ $(function(){
                getDate(m, 'cineworld');
            else
                notAvailable('cineworld');
+
+           if(AllMovies[m].belmont != null)
+               getDate(m, 'belmont');
+           else
+               notAvailable('belmont');
         });
 });
 
@@ -96,6 +105,9 @@ $(function(){
 
 function getDate(movie, cinemaName)
 {
+    if(cinemaName == "belmont")
+        $("#belmont-book").css("display","none");
+
     $("#" + cinemaName + "-not-available").css("display","none");
     $("#" + cinemaName + "-prices").css("display","none");
     $("#" + cinemaName + "-available").css("display","block");
@@ -103,6 +115,7 @@ function getDate(movie, cinemaName)
 
 	var selectDate = document.getElementById(cinemaName + 'Date');
 
+    selectDate.options.length = 0;
     var option = new Option("Date");
     option.value = "header";
     selectDate.options[selectDate.options.length] = option;
@@ -132,6 +145,9 @@ function notAvailable(cinemaName)
 
 function fillTimes(cinemaName)
 {
+    if(cinemaName == "belmont")
+        $("#belmont-book").css("display","none");
+
     var selectTime = document.getElementById(cinemaName + 'Time');
     var selectedDateOption = $('#' + cinemaName + 'Date').find(":selected");
 
@@ -143,7 +159,10 @@ function fillTimes(cinemaName)
     fillTicketTable(cinemaName);
 
     if($(selectedDateOption).val() == "header")
+    {
         return;
+    }
+
 
 
     var session =  $(selectedDateOption).data("session");
@@ -176,8 +195,6 @@ var fillTicketTable = function(cinemaName)
 
     var fill = function()
     {
-        console.log(projection.pricing);
-
         if(projection.pricing == null)
         {
             alert("Projection time has already passed. Please select different time.");
@@ -286,6 +303,25 @@ var hideShowDescription = function()
         $("#movie-description").css("display","none");
         $("#hide-show-movie-info").html("Show Description &#65516;");
     }
+}
+
+
+var belmontShowBookingLink = function()
+{
+    var selectedTimeOption = $('#belmontTime').find(":selected");
+    if($(selectedTimeOption).val() == "header")
+    {
+        $("#belmont-book").css("display","none");
+        return;
+    }
+    else
+    {
+        var selectedTimeOption = $('#belmontTime').find(":selected");
+        var projection =  $(selectedTimeOption).data("projection");
+        $("#belmont-book").attr("href",projection.url);
+        $("#belmont-book").css("display","inline");
+    }
+
 }
 
 

@@ -1,6 +1,6 @@
 var toSimpleName = function(str)
 {
-    return str.toLowerCase().replace(","," ").replace(" & "," and ");
+    return str.toLowerCase().replace(","," ").replace("&amp;","&").replace(" & "," and ");
 }
 
 function toTitleCase(str)

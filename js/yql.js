@@ -37,7 +37,6 @@ var yqlUrlQuery = function(url, callbackName, format, logQuery)
 }
 
 
-
 var yqlResponseToHTML = function(response)
 {
     var rawString = response.results[0].replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&');

@@ -350,6 +350,7 @@ margin-bottom: 1vh;
     height: 350px;
     border-radius: 25px;
     margin: auto;
+    max-width: 100%;
 }
 
 
@@ -379,6 +380,11 @@ margin-bottom: 1vh;
 }
 
 #cineworld-available
+{
+    display: none;
+}
+
+#belmont-available
 {
     display: none;
 }
@@ -422,3 +428,5 @@ margin-bottom: 1vh;
     color: white;
     background-color: black;
 }
+
+

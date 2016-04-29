@@ -56,13 +56,15 @@ var belmontFetchProjections = function(movie,callback)
 {
     var requestsSent = movie.length, requestsProcessed = 0;
 
+    var urlToMovieNameDictionary = [];
+
     // find url with all movie projections
     belmontFetchProjectionCallbackStepOne = function(response)
     {
         var html = yqlJsonResponseToHTML(response);
         var projections_url = $(html).find("#bookTix").attr("href");
 
-        var name = $(html).find("#headlineDetails").children().first().text().trim();
+        var name = urlToMovieNameDictionary[response.query.results.result.url];
 
         if($($(html).find("#synopsis").children()[0]).find("img").length == 1)
             $($(html).find("#synopsis").children()[0]).remove();
@@ -70,20 +72,19 @@ var belmontFetchProjections = function(movie,callback)
         var description = $(html).find("#synopsis").children();
         description = $(description[0]).text().trim() + $(description[1]).text().trim();
 
-
-        movie[toSimpleName(name)].extra = {
+        movie[name].extra = {
             description : description,
             image : movie[toSimpleName(name)].thumbnail.replace("thumbnail","medium")
         }
 
-
-        yqlUrlQuery(encodeURI(projections_url),"belmontFetchProjectionCallbackStepTwo","xml",false);
+        urlToMovieNameDictionary[encodeURI(projections_url)] = name;
+        yqlUrlQuery(encodeURI(projections_url),"belmontFetchProjectionCallbackStepTwo","json",false);
     }
 
     // fill projection array for the movie
     belmontFetchProjectionCallbackStepTwo = function(response)
     {
-        var html = yqlResponseToHTML(response);
+        var html = yqlJsonResponseToHTML(response);
         var movieName = html.find(".productName");
 
         // booking for some movies is not working on the belmont's website!!
@@ -100,8 +101,11 @@ var belmontFetchProjections = function(movie,callback)
             return;
         }
 
-        movieName = movieName.text().trim().replace(" (Belmont)","");
+        movieName = movieName.text().trim().replace(" (Belmont)","").replace(" (Belmont","");
         movieName = toSimpleName(movieName);
+
+        var movieName = urlToMovieNameDictionary[response.query.results.result.url];
+
 
         var sessionProjection_div = html.find(".dates");
         var session = [];
@@ -114,8 +118,7 @@ var belmontFetchProjections = function(movie,callback)
             var date = splitStr[0];
             var time = splitStr[1].split("-")[0];
 
-            var url = "https://boxoffice.filmhousecinema.com/belmont/" + $(projection_url[i]).attr("clickevent")
-                      + "?back=2&area=e8ce4bff-e40e-4521-b18c-373e35969023&type=ga";
+            var url = "https://boxoffice.filmhousecinema.com/belmont/" + $(projection_url[i]).attr("clickevent");
 
             if(!(date in session))
             {
@@ -147,6 +150,7 @@ var belmontFetchProjections = function(movie,callback)
 
     for(var i = 0; i < movie.length; i++)
     {
+        urlToMovieNameDictionary[movie[i].url] = movie[i].simpleName;
         yqlUrlQuery(movie[i].url,"belmontFetchProjectionCallbackStepOne","json",false);
     }
 }
