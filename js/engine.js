@@ -1,6 +1,6 @@
-var VueMovies = null;
-var BelmontMovies = null;
-var CineworldMovies = null;
+var VueMovies = [];
+var BelmontMovies = [];
+var CineworldMovies = [];
 
 var AllMovies = [];
 var AllActors = [];
@@ -12,10 +12,16 @@ var AllActors = [];
 // Populates VueMovies, BelmontMovies and CineworldMovies
 var fetchAllMovies = function(callback)
 {
+    var VueCompleted = false;
+    var BelmontCompleted = false
+    var CineworldCompleted = false;
+
     vueFetchMovies(function(movies) {
         VueMovies = movies;
 
-        if(CineworldMovies != null && BelmontMovies != null)
+        VueCompleted = true;
+
+        if(BelmontCompleted == true)
         {
             callback();
         }
@@ -24,20 +30,24 @@ var fetchAllMovies = function(callback)
     belmontFetchMovies(function(movies) {
         BelmontMovies = movies;
 
-        if(VueMovies != null && CineworldMovies != null)
+        BelmontCompleted = true;
+
+        if(VueCompleted == true)
         {
             callback();
         }
     });
-
+/*
     cineworldFetchMovies(function(movies) {
         CineworldMovies = movies;
 
-        if(VueMovies != null && BelmontMovies != null)
+        //if(VueMovies != null && BelmontMovies != null)
+        if(BelmontMovies != null)
         {
             callback();
         }
     });
+    */
 }
 
 
@@ -74,8 +84,6 @@ var mergeMovies = function()
             AllMovies[BelmontMovies[i].simpleName]["belmont"] = BelmontMovies[i];
             AllMovies[BelmontMovies[i].simpleName]["cineworld"] = null;
         }
-
-        console.log(BelmontMovies[i].url)
     }
 
 
@@ -231,8 +239,6 @@ var fetchActorsSubset = function(movies, startIndex, endIndex, callback)
 
                                 actorsCompleted++;
 
-                                console.log("actorsCompleted" + actorsCompleted + ",actorsRequested: " + actorsRequested);
-
                                 if(actorsCompleted == actorsRequested)
                                 {
                                     populateActors();
@@ -293,14 +299,11 @@ var initWebApp = function(callback)
             {
                 if(BelmontMovies[i].session.length == 0)
                 {
-                    console.log("belmont: " + BelmontMovies[i].simpleName);
                     delete BelmontMovies[BelmontMovies[i].simpleName];
                     BelmontMovies.splice(i,1);
                     i--;
                     length--;
                 }
-
-                console.log("LOOp");
             }
 
             mergeMovies();

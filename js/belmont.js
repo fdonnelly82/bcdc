@@ -94,7 +94,7 @@ var belmontFetchProjections = function(movie,callback)
         }
 
         urlToMovieNameDictionary[encodeURI(projections_url)] = name;
-        yqlUrlQuery(encodeURI(projections_url),"belmontFetchProjectionCallbackStepTwo","json",false);
+        yqlUrlQuery(encodeURI(projections_url),"belmontFetchProjectionCallbackStepTwo","json",true);
     }
 
     // fill projection array for the movie
@@ -116,6 +116,8 @@ var belmontFetchProjections = function(movie,callback)
 
             return;
         }
+
+        console.log("GOT THRU");
 
         movieName = movieName.text().trim().replace(" (Belmont)","").replace(" (Belmont","");
         movieName = toSimpleName(movieName);
@@ -162,6 +164,7 @@ var belmontFetchProjections = function(movie,callback)
             callback(movie);
         }
     }
+
 
 
     for(var i = 0; i < movie.length; i++)
