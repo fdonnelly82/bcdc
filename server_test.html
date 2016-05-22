@@ -20,7 +20,6 @@
 
 
     $(document).ready(function () {
-        var url = "http://localhost:10902/Service1.svc/TestMethod";
 
 /*
         var scriptEl = document.createElement('script');
@@ -28,63 +27,25 @@
         $("body").append(scriptEl);
         $(scriptEl).remove();
 */
+        var url = "https://boxoffice.filmhousecinema.com/belmont/en-GB/events/mustang%20%28belmont%29/2016-5-21_15.50/belmont%202%20ga?back=2&area=e2ceac53-adb7-4373-a741-53cdd6227b1a&type=ga";
+        url =   encodeURIComponent(url);
+
 
         $.ajax({
-            url: "http://localhost:10902/Service1.svc/MyMethod/MyParam=xD",
+            url: "http://localhost:10902/Service1.svc/GetHtml",
+            dataType: "xml",
+            type: "get",
+            data: {
+                url : url
+            },
 
-            // The name of the callback parameter, as specified by the YQL service
-            jsonp: "callback",
-
-            // Tell jQuery we're expecting JSONP
-            dataType: "text",
-
-            // Tell YQL what we want and that we want JSON
-            data: {"BoolValue" : "true" , "StringValue": "xD"},
-
-            // Work with the response
             success: function( response ) {
-                console.log( $(response).text() ); // server response
+                console.log($(response).text());
+                $('body').text($(response).text());
             }
         });
 
-        /*
-        var postdata = {};
-        var data_obj = {"BoolValue" : "true" , "StringValue": "xD"}
-        postdata["value"] =  data_obj;
 
-        $.ajax({
-            type: "POST",
-            url: url,
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(postdata),
-            dataType: "json",
-            success: function(data) {console.log("xDD " + data);},
-            error: function(a,b,error) {console.log(error);}
-        });
-
-
-        $.ajax({
-            url: "http://localhost:8733/mex",
-            headers: {
-
-            },
-            success: function(result)
-            {
-                console.log("success");
-            },
-
-            error: function(xhr, status, error)
-            {
-                console.log(xhr.status );
-            },
-
-            statusCode: {
-                404: function() {
-                    alert( "page not found" );
-                }
-            }
-        });
-        */
     });
 </script>
 </html>

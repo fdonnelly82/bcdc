@@ -5,4 +5,3 @@ var toSimpleName = function(str)
 {
     return str.toLowerCase().replace(","," ").replace("&amp;","&").replace(" & "," and ");
 }
-

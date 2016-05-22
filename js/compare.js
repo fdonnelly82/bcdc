@@ -114,8 +114,8 @@ var movieClicked = function()
 // will fill relevant selectbox for passed cinemaName
 function getDate(movie, cinemaName)
 {
-    if(cinemaName == "belmont")
-        $("#belmont-book").css("display","none");
+    //if(cinemaName == "belmont")
+    //    $("#belmont-book").css("display","none");
 
     // hide prices since dates are being cleared
     $("#" + cinemaName + "-not-available").css("display","none");
@@ -162,8 +162,8 @@ function notAvailable(cinemaName)
 // if date is call to clear times and hide prices
 function fillTimes(cinemaName)
 {
-    if(cinemaName == "belmont")
-        $("#belmont-book").css("display","none");
+    //if(cinemaName == "belmont")
+     //   $("#belmont-book").css("display","none");
 
     var selectTime = document.getElementById(cinemaName + 'Time');
     var selectedDateOption = $('#' + cinemaName + 'Date').find(":selected");
@@ -243,8 +243,13 @@ var fillTicketTable = function(cinemaName)
         }
         else if(cinemaName == "cineworld")
         {
-            console.log("xDD");
             cineworldGetProjectionPricing(projection, function (projection) {
+                fill();
+            });
+        }
+        else if(cinemaName == "belmont")
+        {
+            belmontGetProjectionPricing(projection, function (projection) {
                 fill();
             });
         }
@@ -261,6 +266,7 @@ var comparePrices = function()
 {
     var vueCost = 999999;
     var cineworldCost = 999999;
+    var belmontCost = 999999;
     var selectedTimeOption, projection, p;
 
     if(AllMovies[movieName].cineworld != null)
@@ -306,6 +312,30 @@ var comparePrices = function()
             $("#vue-overall-cost").text("£" + vueCost.toFixed(2));
         }
     }
+
+    if(AllMovies[movieName].belmont != null)
+    {
+        selectedTimeOption = $('#belmontTime').find(":selected");
+        projection =  $(selectedTimeOption).data("projection");
+
+        if(typeof(projection) != "undefined")
+        {
+            belmontCost = 0;
+            for (type in projection.pricing) {
+                p = projection.pricing[type].standard;
+
+                if(isNaN(p))
+                {
+                    continue;
+                }
+
+                belmontCost += parseInt($("#belmont-quantity-" + type).val()) * p;
+                console.log(belmontCost);
+            }
+
+            $("#belmont-overall-cost").text("£" + belmontCost.toFixed(2));
+        }
+    }
 }
 
 
@@ -341,6 +371,7 @@ var belmontShowBookingLink = function()
     }
     else
     {
+        console.log($(selectedTimeOption).data("projection"));
         var selectedTimeOption = $('#belmontTime').find(":selected");
         var projection =  $(selectedTimeOption).data("projection");
         $("#belmont-book").attr("href",projection.url);

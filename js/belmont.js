@@ -176,18 +176,51 @@ var belmontFetchProjections = function(movie,callback)
 
 
 
-/*
-var belmontGetProjectionPricing = function(projection_url, callback)
+
+var belmontGetProjectionPricing = function(projection, callback)
 {
-    belmontProjectionPricingCallback = function(response)
+    belmontProjectionPricingCallback = function(html)
     {
-        html = yqlJsonResponseToHTML(response);
+        var html = $('<div/>').html(html).contents();
 
-        console.log(html);
+        var priceTable = $(html).find(".priceTypes").children().first();
 
-        callback(projectionPricing);
+        var rows = priceTable.find("tr");
+
+        var tickets = [];
+        tickets["Full Price"] =  null;
+        tickets["Senior Citizens"] = null;
+        tickets["Students"] = null;
+        tickets["Disability"] = null;
+        tickets["15-17 Years"] = null;
+        for(var i = 0; i < rows.length; i++)
+        {
+            var ticketType = $(rows[i]).find("[id^=lblPriceType_]").text().trim();
+            var ticketPrice = $(rows[i]).find("[id^=lblPrice_]").text().trim().replace(/[^0-9.]/gi, '');
+
+            tickets[ticketType] = ticketPrice;
+        }
+
+        projection.pricing = {
+            adult : {
+                standard : tickets["Full Price"],
+            },
+            senior : {
+                standard : tickets["Senior Citizens"],
+            },
+            student : {
+                standard : tickets["Students"],
+            },
+            disabled : {
+                standard : tickets["Disability"],
+            },
+            teen: {
+                standard : tickets["15-17 Years"],
+            },
+        }
+
+        callback(projection);
     }
 
-    yqlUrlQuery(projection_url,"belmontProjectionPricingCallback","json",true);
+    CinemaServerGetHtml(projection.url,belmontProjectionPricingCallback);
 }
-*/

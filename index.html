@@ -21,6 +21,7 @@
         <script src="js/perfect-scrollbar.jquery.min.js"></script>
 
         <script src="js/miscellaneous.js"></script>
+        <script src="js/cinema-server.js"></script>
         <script src="js/yql.js"></script>
         <script src="js/belmont.js"></script>
         <script src="js/vue.js"></script>
@@ -204,60 +205,56 @@
                                 <option>Date</option>
                             </select>
                         </div>
-                        <div class="form-group select-custom select-time" onchange="belmontShowBookingLink()">
+                        <div class="form-group select-custom select-time" onchange="fillTicketTable('belmont')">
                             <select class="form-control" id="belmontTime">
                                 <option>Time</option>
                             </select>
                         </div>
                     </div>
-                    <div id="">
+                    <div id="belmont-loading-ticket-table" class="loading-ticket-table">
+                        <img src="ajax-loader(2).gif">
+                    </div>
+                    <div id="belmont-prices">
                         <table class="ticket-table">
                             <thead>
                             <tr class="ticket-table-header">
-                                <th>&nbsp;</th>
+                                <th>Quantity</th>
                                 <th>Ticket type</th>
                                 <th>Cost</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="ticket-table-tr-blank">
-                                <td><input class="ticket-quantity" value="0" type="text" style="width: 30px; color: black; visibility: hidden;"/></td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                            </tr>
                             <tr>
-                                <td><input class="ticket-quantity" value="0" type="text" style="width: 30px; color: black; visibility: hidden;"/></td>
+                                <td><input class="ticket-quantity" id="belmont-quantity-adult" value="0" type="text" style="width: 30px; color: black;"/></td>
                                 <td>Adult</td>
-                                <td id="belmont-cost-adult">‬10.00</td>
+                                <td id="belmont-cost-adult">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             </tr>
                             <tr>
-                                <td><input class="ticket-quantity" value="0" type="text" style="width: 30px; color: black; visibility: hidden;"/></td>
-                                <td>Senior Citizen</td>
-                                <td id="belmont-cost-senior-citizen">8.00</td>
+                                <td><input class="ticket-quantity" id="belmont-quantity-senior" value="0" type="text" style="width: 30px; color: black;"/></td>
+                                <td>Senior</td>
+                                <td id="belmont-cost-senior"></td>
                             </tr>
                             <tr>
-                                <td><input class="ticket-quantity" value="0" type="text" style="width: 30px; color: black; visibility: hidden;"/></td>
+                                <td><input class="ticket-quantity" id="belmont-quantity-student" value="0" type="text" style="width: 30px; color: black;"/></td>
                                 <td>Student</td>
-                                <td id="belmont-cost-student">8.00</td>
+                                <td id="belmont-cost-student"></td>
                             </tr>
                             <tr>
-                                <td><input class="ticket-quantity" value="0" type="text" style="width: 30px; color: black; visibility: hidden;"/></td>
-                                <td>Disability</td>
-                                <td id="belmont-cost-disability">8.00</td>
+                                <td><input class="ticket-quantity" id="belmont-quantity-disabled" value="0" type="text" style="width: 30px; color: black;"/></td>
+                                <td>Disabled</td>
+                                <td id="belmont-cost-disabled"></td>
                             </tr>
                             <tr>
-                                <td><input class="ticket-quantity" value="0" type="text" style="width: 30px; color: black; visibility: hidden;"/></td>
-                                <td>15-17 Years</td>
-                                <td id="belmont-cost-15-17">8.00</td>
+                                <td><input class="ticket-quantity" id="belmont-quantity-teen" value="0" type="text" style="width: 30px; color: black;"/></td>
+                                <td>15-17 year old</td>
+                                <td id="belmont-cost-teen"></td>
                             </tr>
                             </tbody>
                         </table>
-                        <div style="margin-top: 1vh; text-align: center;">
-                            Showing average prices. Select date and time to book.
-                        </div>
-                        <div class="cinema-summary">
-                            <a id="belmont-book" target="_blank" style="display: none;">Book now</a>
-                        </div>
+                    </div>
+                    <div id="belmont-cinema-summary" class="cinema-summary">
+                        <h2 id="belmont-overall-cost"></h2>
+                        <a id="belmont-book" target="_blank"></a>
                     </div>
                 </div>
             </div>
